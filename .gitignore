@@ -5,7 +5,10 @@
 # Add allowed
 !.gitignore
 !zsh/
+!zsh/**
 !README.md
+!waybar/
+!waybar/**
 
 # Re-ignore sensitive files or directories
 .ssh/
