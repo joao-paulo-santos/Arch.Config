@@ -4,11 +4,15 @@
 
 # Add allowed
 !.gitignore
+!README.md
 !zsh/
 !zsh/**
-!README.md
 !waybar/
 !waybar/**
+!kitty/
+!kitty/**
+!neofetch/
+!neofetch/**
 
 # Re-ignore sensitive files or directories
 .ssh/
