@@ -13,6 +13,11 @@
 !kitty/**
 !neofetch/
 !neofetch/**
+!hypr/
+!hypr/**
+hypr/bg/**
+hypr/hyprlock_bg/**
+!hypr/bg/city.png
 
 # Re-ignore sensitive files or directories
 .ssh/
