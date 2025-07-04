@@ -1,0 +1,35 @@
+# Allow list for version control
+# Explicitly allow files and directories to be tracked
+
+# Allow specific application data
+!Code/User/settings.json
+
+# Allow specific directories
+!nvim/swap/
+!nvim/undo/
+!nvim/backup/
+
+# Allow specific files
+!*.conf
+!*.ini
+!*.rc
+!user-dirs.*
+
+
+# Ignore everything else
+*
+
+!.gitignore
+
+# Re-ignore sensitive files or directories
+.ssh/
+.gnupg/
+.bash_history
+.zsh_history
+.lesshst
+.local/
+.cache/
+.pki/
+.git/
+.npm/
+.vscode/
