@@ -40,5 +40,6 @@ if [[ "$util" =~ ^[0-9]+$ ]]; then
   if [ "$util" -ge 90 ]; then cls="gpu-usage-critical"
   elif [ "$util" -ge 75 ]; then cls="gpu-usage-warn"
 fi
+
 else util="N/A"; cls="gpu-usage-unknown"; fi
 echo "{\"text\":\"${util}%\",\"tooltip\":\"${name} \\nUsage: ${util}% \\nTemperature: ${temp}°C \\nMemory: ${mem_used}/${mem_total} GB\",\"class\":\"$cls\"}"

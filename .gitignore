@@ -18,6 +18,9 @@
 hypr/bg/**
 hypr/hyprlock_bg/**
 !hypr/bg/city.png
+!kdeglobals
+!nvim/
+!nvim/init.lua
 
 # Re-ignore sensitive files or directories
 .ssh/
