@@ -2,12 +2,11 @@
 
 * {
     font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 13px;
+    background-color: rgba(0, 0, 0, 0.849);
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -27,7 +26,7 @@ button:hover {
 }
 
 #workspaces {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #workspaces button {
@@ -48,6 +47,12 @@ button:hover {
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
+}
+
+#workspaces button.active {
+    /* background-color: @surface2; */
+    /* color: green; */
+    box-shadow: inset 0 -3px #ffffff;
 }
 
 #mode {
@@ -81,13 +86,24 @@ button:hover {
 
 #window,
 #workspaces {
-    margin: 0 4px;
+    margin: 0 0px;
 }
 
-.modules-right,
+#custom-workspacesico {
+     margin: 0 8px;
+}
+
+.modules-right {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0px;
+    border-bottom-left-radius : 20px;
+}
+
 .modules-left {
-    background-color: @base;
-    border-radius: 13px;
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: 0px;
+    border-bottom-right-radius : 20px;
+    border-bottom-left-radius : 20px;
 }
 
 .modules-right {
@@ -95,8 +111,7 @@ button:hover {
 }
 
 .modules-left {
-    padding: 0 5px;
-    margin: 0 10px;
+    padding: 0 0px;
 }
 
 .modules-center {
@@ -171,7 +186,7 @@ label:focus {
 }
 
 #cpu {
-    color: @green;
+    color: #ffffff;
 }
 
 #memory {
@@ -187,30 +202,51 @@ label:focus {
 }
 
 #network {
-    color: @yellow;
+    color: #ffffff;
 }
 
 #network.disconnected {
     color: @red;
 }
 
-#pulseaudio {
-    color: @maroon;
+#submap {
+    padding-right: 8px;
+    color: #ffffff;
 }
 
-#submap {
-    color: @maroon;
+#pulseaudio {
+    color: #89b0fa;
+    background: none;
+    transition: background 0.2s ease;
 }
+
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: @surface2;
+    background: rgba(0, 0, 0, 0.712);
 }
 
+#pulseaudio:not(:hover):not(:active) {
+    background: transparent;
+}
+
+/* Force reset on focus loss */
+#pulseaudio:focus {
+    background: transparent;
+}
+
+#pulseaudio.source-muted {
+    color: #ffffff;
+}
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    font-size: 19px;
+    color: #ff9e71;
+}
+
+#pulseaudio.muted.source-muted {
+    font-size: 19px;
+    color: #ff6b6b;
 }
 
 #wireplumber {
@@ -239,6 +275,10 @@ label:focus {
 
 #custom-workspacesico {
     color: @lavender;
+}
+
+#custom-gpu-nvidia {
+    color: #ffffff;
 }
 
 #custom-media.custom-spotify {
@@ -353,8 +393,100 @@ label:focus {
     background-color: #0069d4;
 }
 
-
-#workspaces button.active {
-    /* background-color: @surface2; */
-    color: green;
+/* Modern menu styling */
+menu {
+    border-radius: 15px;
+    background: #161320;
+    color: #B5E8E0;
+    border: 1px solid rgba(181, 232, 224, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    padding: 8px;
+    margin: 4px;
 }
+
+menuitem {
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin: 2px;
+    transition: all 0.2s ease;
+    color: #B5E8E0;
+}
+
+menuitem:hover {
+    background: rgba(181, 232, 224, 0.15);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(181, 232, 224, 0.1);
+}
+
+menuitem:selected {
+    background: rgba(181, 232, 224, 0.25);
+    color: #ffffff;
+}
+
+separator {
+    background: rgba(181, 232, 224, 0.2);
+    margin: 4px 8px;
+    min-height: 1px;
+}
+
+/* default text */
+#custom-cpu-usage-temp {
+    padding: 0 5px;
+  color: #c0c0c0;
+}
+
+/* classes applied from script */
+#custom-cpu-usage-temp.cpu-temp-normal {
+  color: #ffffff; /* green */
+}
+#custom-cpu-usage-temp.cpu-temp-warn {
+  color: #e0a95c; /* orange */
+}
+#custom-cpu-usage-temp.cpu-temp-critical {
+  color: #ff6b6b; /* red */
+}
+#custom-cpu-usage-temp.cpu-temp-unknown {
+  color: #e0a95c; /* grey */
+}
+
+/* GPU Usage */
+#custom-gpu-usage {
+    padding: 0 5px;
+    color: #ffffff;
+}
+#custom-gpu-usage.gpu-usage-warn {
+  color: #e0a95c;
+}
+#custom-gpu-usage.gpu-usage-critical {
+  color: #ff6b6b;
+}
+
+/* GPU Temperature */
+#custom-gpu-temp {
+    padding: 0 5px;
+    color: #ffffff;
+}
+#custom-gpu-temp.gpu-temp-warn {
+  color: #e0a95c;
+}
+#custom-gpu-temp.gpu-temp-critical {
+  color: #ff6b6b;
+}
+
+/* GPU Memory */
+#custom-gpu-mem {
+    padding: 0 5px;
+  color: #ffffff;
+}
+#custom-gpu-mem.gpu-mem-warn {
+  color: #e0a95c;
+}
+#custom-gpu-mem.gpu-mem-critical {
+  color: #ff6b6b;
+}
+
+#custom-gpu-title {
+  color: #ffffff;
+  padding: 0 5px 0 0;
+}
+

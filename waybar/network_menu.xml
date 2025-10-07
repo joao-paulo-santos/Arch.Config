@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+        <object class="GtkMenuItem" id="connect">
+            <property name="label">Connect to Network</property>
+        </object>
+    </child>
+    <child>
+        <object class="GtkMenuItem" id="disconnect">
+            <property name="label">Disconnect</property>
+        </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="delimiter1"/>
+    </child>
+    <child>
+        <object class="GtkMenuItem" id="scan">
+            <property name="label">Scan Networks</property>
+        </object>
+    </child>
+    <child>
+        <object class="GtkMenuItem" id="status">
+            <property name="label">Network Status</property>
+        </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="delimiter2"/>
+    </child>
+    <child>
+        <object class="GtkMenuItem" id="settings">
+            <property name="label">Network Settings</property>
+        </object>
+    </child>
+  </object>
+</interface>
