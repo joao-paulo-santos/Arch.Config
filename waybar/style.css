@@ -67,7 +67,7 @@ button:hover {
 #backlight,
 #network,
 #pulseaudio {
-    padding: 0 10px;
+    padding: 0 5px 0 5px;
 }
 
 #wireplumber,
@@ -215,7 +215,8 @@ label:focus {
 }
 
 #pulseaudio {
-    color: #89b0fa;
+    color: #ffffff;
+    padding: 0 5px 0 5px;
     background: none;
     transition: background 0.2s ease;
 }
@@ -240,12 +241,11 @@ label:focus {
 }
 
 #pulseaudio.muted {
-    font-size: 19px;
-    color: #ff9e71;
+    color: #ff6b6b;
+    font-size: 20px;
 }
 
 #pulseaudio.muted.source-muted {
-    font-size: 19px;
     color: #ff6b6b;
 }
 
@@ -505,4 +505,54 @@ separator {
 #custom-separator {
     color: #ffffff;
     padding: 0 5px;
+}
+
+#systemd-failed-units {
+    color: #ffffff;
+    padding: 0 5px;
+}
+
+/* Sound Module */
+#custom-sound {
+    color: #ffffff;
+    padding: 0 10px 0 5px;
+    background: none;
+    transition: background 0.2s ease;
+}
+
+#custom-sound:hover {
+    background: rgba(0, 0, 0, 0.712);
+}
+
+#custom-sound:not(:hover):not(:active) {
+    background: transparent;
+}
+
+#custom-sound.sound-muted {
+    color: #ff6b6b;
+}
+
+/* Microphone Module */
+#custom-microphone {
+    color: #ffffff;
+    padding: 0 10px 0 5px;
+    background: none;
+    transition: background 0.2s ease;
+    font-size: 20px;
+}
+
+#custom-microphone:hover {
+    background: rgba(0, 0, 0, 0.712);
+}
+
+#custom-microphone:not(:hover):not(:active) {
+    background: transparent;
+}
+
+#custom-microphone.microphone-muted {
+    color: #ffffff;
+}
+
+#custom-microphone.microphone-active {
+    color: #1ca000;
 }

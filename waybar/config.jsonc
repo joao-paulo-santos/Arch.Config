@@ -1,42 +1,58 @@
 // -*- mode: jsonc -*-
 [{
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
     "output": "DP-4",
     "margin-top": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "height": 35, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
+    "height": 35,
     "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
     "modules-left": [
-        //"custom/media"
-        //"custom/workspacesico",
         "hyprland/workspaces",
         "hyprland/submap"
     ],
-    // "modules-center": [
-    //     //"hyprland/window"        
-    // ],
+     "modules-center": [
+         "privacy"     
+     ],
     "modules-right": [
-        //"mpd",
         //"idle_inhibitor",
+        "systemd-failed-units",
         "pulseaudio",
+        "custom/microphone",
         "custom/network",
-        //"power-profiles-daemon",
-        // "memory",
-        // "temperature",
-        //"backlight",
-        // "keyboard-state",
-        // "hyprland/language",
-        // "battery",
-        // "battery#bat2",
-        //"tray",
         "clock",
         "custom/power"
     ],
-    // Modules configuration
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ],
+        "ignore-monitor": true,
+        "ignore": [
+            {
+                "type": "audio-in",
+                "name": "cava"
+            }
+        ]
+    },
+    "systemd-failed-units": {
+        "hide-on-ok": true,
+        "format": "✗ {nr_failed}",
+        "format-ok": "✓",
+        "system": true,
+        "user": true 
+    },
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -46,55 +62,10 @@
             "active": "->"
         }
     },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
     "hyprland/submap": {
         "format": "| >_{}",
         "default-submap": "default",
         "always-on": false
-    },
-    "hyprland/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": [
-            "",
-            ""
-        ],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -103,33 +74,11 @@
             "deactivated": ""
         }
     },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
-    },
     "clock": {
         "format": "{:%H:%M}",
         "tooltip": true,
         "tooltip-format": "{:%A, %B %d, %Y\n%H:%M:%S}",
         "interval": 60
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
-        }
     },
     "custom/network": {
         "exec": "$HOME/.config/waybar/scripts/network-status.sh 2> /dev/null",
@@ -147,13 +96,9 @@
         }
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "  {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
+        //"scroll-step": 5,
+        "format": "{volume}% {icon}",
+        "format-muted": " ",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -167,45 +112,37 @@
                 ""
             ]
         },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "menu": "on-click-right",
-        "menu-file": "$HOME/.config/waybar/audio_menu.xml",
+        "menu-file": "$HOME/.config/waybar/menus/audio_menu.xml",
         "menu-actions": {
-            "mute_output": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-            "mute_input": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-            "control_panel": "setsid pavucontrol >/dev/null 2>&1 &"
+            "mute_unmute": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+            "audio_settings": "setsid pavucontrol >/dev/null 2>&1 &"
         }
     },
-    "custom/media": {
-        "format": "{icon} {text}",
+    "custom/microphone": {
+        "exec": "$HOME/.config/waybar/scripts/microphone-module.sh 2> /dev/null",
+        "interval": 5,
         "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "menu": "on-click-right",
+        "menu-file": "$HOME/.config/waybar/menus/audio_menu.xml",
+        "menu-actions": {
+            "mute_unmute": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+            "audio_settings": "setsid pavucontrol >/dev/null 2>&1 &"
+        }
     },
     "custom/power": {
         "format": " ⏻ ",
         "tooltip": false,
         "menu": "on-click",
-        "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+        "menu-file": "$HOME/.config/waybar/power_menu.xml",
         "menu-actions": {
             "shutdown": "shutdown now",
             "reboot": "reboot",
             "suspend": "systemctl suspend",
             "hibernate": "systemctl hibernate"
         }
-    },
-    "custom/workspacesico": {
-        "format": ""
-    },
-    "custom/clock": {
-        //"exec": "date +'%d. %b %H:%M'",
-        "exec": "date +'%H:%M'",
-        "interval": 10
     }
 },
 {
