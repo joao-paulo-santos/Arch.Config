@@ -25,6 +25,10 @@ hypr/hyprlock_bg/**
 !waybar/**
 waybar/state/**
 
+#rofi
+!rofi/
+!rofi/**
+
 # Re-ignore sensitive files or directories
 .ssh/
 .gnupg/
