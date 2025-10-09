@@ -1,8 +1,9 @@
-CACHE="/tmp/gpu_stats_cache.json"
+STATE_DIR="$HOME/.config/waybar/state"
+CACHE="$STATE_DIR/gpu_stats_cache.json"
 
 if [ ! -r "$CACHE" ]; then echo '{"text":"GPU"}'; exit; fi
 mapfile -t GPU_STATS < <(jq -r '.name, .util, .temp, .mem_used, .mem_total' "$CACHE")
-# Assign the array elements to individual named variables
+
 name="${GPU_STATS[0]}"
 util="${GPU_STATS[1]}"
 temp="${GPU_STATS[2]}"

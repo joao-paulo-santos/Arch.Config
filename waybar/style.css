@@ -60,10 +60,8 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
-#clock,
 #battery,
 #cpu,
-#memory,
 #disk,
 #temperature,
 #backlight,
@@ -133,7 +131,8 @@ button:hover {
 }
 
 #clock {
-    color: @flamingo;
+    color: #ffffff;
+    padding: 0 5px;
 }
 
 #battery {
@@ -190,7 +189,8 @@ label:focus {
 }
 
 #memory {
-    background-color: #9b59b6;
+    color: #ffffff;
+    padding: 0 5px;
 }
 
 #disk {
@@ -269,9 +269,7 @@ label:focus {
     color: white;
 }
 
-#custom-clock {
-    color: @flamingo;
-}
+
 
 #custom-workspacesico {
     color: @lavender;
@@ -490,3 +488,21 @@ separator {
   padding: 0 5px 0 0;
 }
 
+#custom-network {
+  color: #ffffff;
+  padding: 0 10px 0 5px;
+}
+
+#custom-network.disconnected {
+  color: #ff6b6b;
+}
+
+#custom-clock {
+    color: @flamingo;
+    padding: 0 5px;
+}
+
+#custom-separator {
+    color: #ffffff;
+    padding: 0 5px;
+}

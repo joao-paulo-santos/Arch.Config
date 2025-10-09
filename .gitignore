@@ -7,8 +7,6 @@
 !README.md
 !zsh/
 !zsh/**
-!waybar/
-!waybar/**
 !kitty/
 !kitty/**
 !neofetch/
@@ -21,6 +19,11 @@ hypr/hyprlock_bg/**
 !kdeglobals
 !nvim/
 !nvim/init.lua
+
+#waybar
+!waybar/
+!waybar/**
+waybar/state/**
 
 # Re-ignore sensitive files or directories
 .ssh/

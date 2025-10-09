@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-get_gpu_stats() {
-  CACHE="/tmp/gpu_stats_cache.json"
-  LOCK="/tmp/gpu_stats_cache.lock"
-  MAX_AGE=10
+get_gpu_stats() { #nvidia
+  STATE_DIR="$HOME/.config/waybar/state"
+  mkdir -p "$STATE_DIR"
+  CACHE="$STATE_DIR/gpu_stats_cache.json"
+  LOCK="$STATE_DIR/gpu_stats_cache.lock"
+  MAX_AGE=15
   exec 9>"$LOCK"
   if [ -f "$CACHE" ]; then
     age=$(( $(date +%s) - $(stat -c %Y "$CACHE") ))
@@ -22,13 +24,14 @@ get_gpu_stats() {
   fi
 }
 
-CACHE="/tmp/gpu_stats_cache.json"
+STATE_DIR="$HOME/.config/waybar/state"
+CACHE="$STATE_DIR/gpu_stats_cache.json"
 get_gpu_stats
 
 if [ ! -r "$CACHE" ]; then echo '{"text":"Temp N/A","class":"gpu-temp-unknown"}'; exit; fi
 
 mapfile -t GPU_STATS < <(jq -r '.name, .util, .temp, .mem_used, .mem_total' "$CACHE")
-# Assign the array elements to individual named variables
+
 name="${GPU_STATS[0]}"
 util="${GPU_STATS[1]}"
 temp="${GPU_STATS[2]}"
