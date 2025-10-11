@@ -135,49 +135,10 @@ button:hover {
     padding: 0 5px;
 }
 
-#battery {
-    color: @green;
-}
-
-#battery.charging,
-#battery.plugged {
-    color: @sapphire;
-}
-
 @keyframes blink {
     to {
         color: #000000;
     }
-}
-
-/* Using steps() instead of linear as a timing function to limit cpu usage */
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#power-profiles-daemon {
-    padding-right: 15px;
-}
-
-#power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
-}
-
-#power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
-}
-
-#power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
-    color: #000000;
 }
 
 label:focus {
@@ -195,10 +156,6 @@ label:focus {
 
 #disk {
     background-color: #964B00;
-}
-
-#backlight {
-    background-color: #90b1b1;
 }
 
 #network {
@@ -221,16 +178,6 @@ label:focus {
     transition: background 0.2s ease;
 }
 
-
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background: rgba(0, 0, 0, 0.712);
-}
-
-#pulseaudio:not(:hover):not(:active) {
-    background: transparent;
-}
-
 /* Force reset on focus loss */
 #pulseaudio:focus {
     background: transparent;
@@ -249,63 +196,9 @@ label:focus {
     color: #ff6b6b;
 }
 
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
 #custom-power {
     min-width: 30px;
     color: white;
-}
-
-
-
-#custom-workspacesico {
-    color: @lavender;
-}
-
-#custom-gpu-nvidia {
-    color: #ffffff;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
-    background-color: @sky;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
-#tray {
-    background-color: #2980b9;
-}
-
-#tray>.passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray>.needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
 }
 
 #idle_inhibitor {
@@ -319,55 +212,6 @@ label:focus {
 
 #idle_inhibitor.activated {
     color: @sky;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state>label {
-    padding: 0 5px;
-}
-
-#keyboard-state>label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-    background-color: transparent;
 }
 
 #privacy {
@@ -512,26 +356,6 @@ separator {
     padding: 0 5px;
 }
 
-/* Sound Module */
-#custom-sound {
-    color: #ffffff;
-    padding: 0 10px 0 5px;
-    background: none;
-    transition: background 0.2s ease;
-}
-
-#custom-sound:hover {
-    background: rgba(0, 0, 0, 0.712);
-}
-
-#custom-sound:not(:hover):not(:active) {
-    background: transparent;
-}
-
-#custom-sound.sound-muted {
-    color: #ff6b6b;
-}
-
 /* Microphone Module */
 #custom-microphone {
     color: #ffffff;
@@ -539,14 +363,6 @@ separator {
     background: none;
     transition: background 0.2s ease;
     font-size: 20px;
-}
-
-#custom-microphone:hover {
-    background: rgba(0, 0, 0, 0.712);
-}
-
-#custom-microphone:not(:hover):not(:active) {
-    background: transparent;
 }
 
 #custom-microphone.microphone-muted {

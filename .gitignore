@@ -28,6 +28,12 @@ waybar/state/**
 #rofi
 !rofi/
 !rofi/**
+!my-desktop-entries/
+!my-desktop-entries/**
+
+#satty
+!satty/
+!satty/**
 
 # Re-ignore sensitive files or directories
 .ssh/

@@ -86,7 +86,7 @@
         "return-type": "json",
         "on-click": "$HOME/.config/waybar/scripts/network-status.sh toggle 2> /dev/null",
         "menu": "on-click-right",
-        "menu-file": "$HOME/.config/waybar/network_menu.xml",
+        "menu-file": "$HOME/.config/waybar/menus/network_menu.xml",
         "menu-actions": {
             "connect": "setsid kitty -e bash -c 'echo \"Available WiFi Networks:\"; echo \"========================\"; nmcli -p d wifi l; echo \"\"; echo \"To connect to a network, use:\"; echo \"nmcli dev wifi connect <SSID> password <PASSWORD>\"; exec bash' >/dev/null 2>&1 &",
             "disconnect": "setsid nmcli device disconnect $(nmcli -t -f DEVICE,TYPE device statu | grep wifi$ | cut -d: -f1) >/dev/null 2>&1 &",
@@ -136,7 +136,7 @@
         "format": " ⏻ ",
         "tooltip": false,
         "menu": "on-click",
-        "menu-file": "$HOME/.config/waybar/power_menu.xml",
+        "menu-file": "$HOME/.config/waybar/menus/power_menu.xml",
         "menu-actions": {
             "shutdown": "shutdown now",
             "reboot": "reboot",
