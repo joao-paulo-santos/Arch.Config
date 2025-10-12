@@ -178,7 +178,7 @@ install_aur_packages() {
 
 
 # HYPRLAND packages
-HYPRLAND_PACKAGES=(hypridle hyprland hyprpaper hyprshot rofi satty swaybg swww waybar)
+HYPRLAND_PACKAGES=(hyprpaper rofi satty swaybg swww waybar)
 
 # AUDIO packages
 AUDIO_PACKAGES=(pavucontrol pipewire-pulse)
@@ -187,7 +187,7 @@ AUDIO_PACKAGES=(pavucontrol pipewire-pulse)
 GRAPHICS_PACKAGES=(nvidia-open nvidia-open-lts nvidia-settings nvidia-utils vulkan-tools)
 
 # DEV packages
-DEV_PACKAGES=(amd-ucode awakened-poe-trade-git base-devel git github-desktop-bin neovim nodejs npm visual-studio-code-bin)
+DEV_PACKAGES=(base-devel git neovim nodejs npm)
 
 # TERMINAL packages
 TERMINAL_PACKAGES=(htop kitty zsh)
@@ -199,10 +199,10 @@ FONT_PACKAGES=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-liberation)
 NETWORK_PACKAGES=(networkmanager openssh)
 
 # OTHER packages
-OTHER_PACKAGES=(acpid base brave-bin brightnessctl ddcutil discord dolphin dotnet-sdk efibootmgr gnome-keyring gptfdisk jdk-openjdk jdk21-openjdk jq linux linux-firmware linux-lts linux-lts-headers man-db man-pages nano nm-connection-editor ntfs-3g parted reflector rtkit socat steam steam-native-runtime sudo swaync texinfo ufw usbutils wl-clipboard yay yay-debug)
+OTHER_PACKAGES=(acpid amd-ucode base brightnessctl ddcutil discord dolphin dotnet-sdk efibootmgr gimp gnome-keyring gptfdisk jdk-openjdk jdk21-openjdk jq linux linux-firmware linux-lts linux-lts-headers man-db man-pages nano nm-connection-editor ntfs-3g parted reflector rtkit socat steam steam-native-runtime sudo swaync texinfo ufw usbutils wl-clipboard)
 
 # AUR packages
-AUR_PACKAGES=(awakened-poe-trade-git brave-bin github-desktop-bin github-desktop-bin-debug swengine-debug visual-studio-code-bin yay yay-debug)
+AUR_PACKAGES=(awakened-poe-trade-git brave-bin github-desktop-bin github-desktop-bin-debug hypr-bg-manager swengine-debug visual-studio-code-bin yay yay-debug)
 
 # Install packages by category
 if [ -n "${HYPRLAND_PACKAGES:-}" ]; then
@@ -259,8 +259,8 @@ if [ "$SKIP_DOTFILES" = false ]; then
     fi
     
     # Clone the repository with submodules
-    log_info "Cloning dotfiles from $CONFIG_REPO"
-    sudo -u "$USERNAME" git clone --recurse-submodules "$CONFIG_REPO" "$CONFIG_DIR"
+    log_info "Cloning dotfiles from \$CONFIG_REPO"
+    sudo -u "\$USERNAME" git clone --recurse-submodules "\$CONFIG_REPO" "\$CONFIG_DIR"
     
     # Set proper ownership
     chown -R "$USERNAME:$USERNAME" "$CONFIG_DIR"

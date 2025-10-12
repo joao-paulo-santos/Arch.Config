@@ -28,6 +28,18 @@ elif command -v paru &> /dev/null; then
     AUR_PACKAGES=$(paru -Qm | awk '{print $1}' | sort)
 fi
 
+# Filter out AUR packages from explicit packages to avoid duplicates
+OFFICIAL_PACKAGES=""
+if [ -n "$AUR_PACKAGES" ]; then
+    # Create temporary files for comparison
+    echo "$EXPLICIT_PACKAGES" > /tmp/explicit_packages.txt
+    echo "$AUR_PACKAGES" > /tmp/aur_packages.txt
+    OFFICIAL_PACKAGES=$(comm -23 /tmp/explicit_packages.txt /tmp/aur_packages.txt)
+    rm -f /tmp/explicit_packages.txt /tmp/aur_packages.txt
+else
+    OFFICIAL_PACKAGES="$EXPLICIT_PACKAGES"
+fi
+
 # Categorize packages (basic categorization)
 categorize_packages() {
     local packages="$1"
@@ -37,17 +49,17 @@ categorize_packages() {
     echo "$packages" | grep -E "$pattern" || true
 }
 
-# Extract package categories
-HYPRLAND_PACKAGES=$(echo "$EXPLICIT_PACKAGES" | grep -E "(hypr|waybar|rofi|swww|hyprpaper|swaybg|mpvpaper|satty|waytrogen)" || true)
-AUDIO_PACKAGES=$(echo "$EXPLICIT_PACKAGES" | grep -E "(pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber)" || true)
-GRAPHICS_PACKAGES=$(echo "$EXPLICIT_PACKAGES" | grep -E "(nvidia|mesa|vulkan|intel-media-driver|gpu)" || true)
-DEV_PACKAGES=$(echo "$EXPLICIT_PACKAGES" | grep -E "(git|code|nvim|neovim|nodejs|npm|python|gcc|make|cmake|base-devel)" || true)
-TERMINAL_PACKAGES=$(echo "$EXPLICIT_PACKAGES" | grep -E "(kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch)" || true)
-FONT_PACKAGES=$(echo "$EXPLICIT_PACKAGES" | grep -E "(font|ttf-|noto|nerd)" || true)
-NETWORK_PACKAGES=$(echo "$EXPLICIT_PACKAGES" | grep -E "(networkmanager|wifi|bluetooth|openssh)" || true)
+# Extract package categories (using OFFICIAL_PACKAGES only, not AUR)
+HYPRLAND_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(^hypr|waybar|rofi|swww|hyprpaper|swaybg|mpvpaper|satty|waytrogen)$" || true)
+AUDIO_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber)" || true)
+GRAPHICS_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(nvidia|mesa|vulkan|intel-media-driver|gpu)" || true)
+DEV_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(^git$|^code$|^nvim$|^neovim$|nodejs|npm|python|gcc|make|cmake|base-devel)" || true)
+TERMINAL_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch)" || true)
+FONT_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(font|ttf-|noto|nerd)" || true)
+NETWORK_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(networkmanager|wifi|bluetooth|openssh)" || true)
 
 # Remove categorized packages from the main list to avoid duplicates
-REMAINING_PACKAGES=$(echo "$EXPLICIT_PACKAGES" | grep -vE "(hypr|waybar|rofi|swww|hyprpaper|swaybg|mpvpaper|satty|waytrogen|pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber|nvidia|mesa|vulkan|intel-media-driver|gpu|git|code|nvim|neovim|nodejs|npm|python|gcc|make|cmake|base-devel|kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch|font|ttf-|noto|nerd|networkmanager|wifi|bluetooth|openssh)" || echo "$EXPLICIT_PACKAGES")
+REMAINING_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -vE "(^hypr|waybar|rofi|swww|hyprpaper|swaybg|mpvpaper|satty|waytrogen|pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber|nvidia|mesa|vulkan|intel-media-driver|gpu|^git$|^code$|^nvim$|^neovim$|nodejs|npm|python|gcc|make|cmake|base-devel|kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch|font|ttf-|noto|nerd|networkmanager|wifi|bluetooth|openssh)" || echo "$OFFICIAL_PACKAGES")
 
 # Start creating the installer script
 cat > "$TEMP_INSTALLER" << 'EOF'
