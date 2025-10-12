@@ -321,9 +321,9 @@ if [ "$SKIP_DOTFILES" = false ]; then
         sudo -u "$USERNAME" mv "$CONFIG_DIR" "$BACKUP_DIR"
     fi
     
-    # Clone the repository
-    log_info "Cloning dotfiles from $CONFIG_REPO"
-    sudo -u "$USERNAME" git clone "$CONFIG_REPO" "$CONFIG_DIR"
+    # Clone the repository with submodules
+    log_info "Cloning dotfiles from \$CONFIG_REPO"
+    sudo -u "\$USERNAME" git clone --recurse-submodules "\$CONFIG_REPO" "\$CONFIG_DIR"
     
     # Set proper ownership
     chown -R "$USERNAME:$USERNAME" "$CONFIG_DIR"

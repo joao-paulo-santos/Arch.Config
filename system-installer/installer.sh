@@ -178,7 +178,7 @@ install_aur_packages() {
 
 
 # HYPRLAND packages
-HYPRLAND_PACKAGES=(hypridle hyprland hyprpaper hyprshot rofi rofi-calc satty swaybg swww waybar waytrogen)
+HYPRLAND_PACKAGES=(hypridle hyprland hyprpaper hyprshot rofi satty swaybg swww waybar)
 
 # AUDIO packages
 AUDIO_PACKAGES=(pavucontrol pipewire-pulse)
@@ -202,7 +202,7 @@ NETWORK_PACKAGES=(networkmanager openssh)
 OTHER_PACKAGES=(acpid base brave-bin brightnessctl ddcutil discord dolphin dotnet-sdk efibootmgr gnome-keyring gptfdisk jdk-openjdk jdk21-openjdk jq linux linux-firmware linux-lts linux-lts-headers man-db man-pages nano nm-connection-editor ntfs-3g parted reflector rtkit socat steam steam-native-runtime sudo swaync texinfo ufw usbutils wl-clipboard yay yay-debug)
 
 # AUR packages
-AUR_PACKAGES=(awakened-poe-trade-git brave-bin github-desktop-bin github-desktop-bin-debug swengine-debug visual-studio-code-bin waytrogen yay yay-debug)
+AUR_PACKAGES=(awakened-poe-trade-git brave-bin github-desktop-bin github-desktop-bin-debug swengine-debug visual-studio-code-bin yay yay-debug)
 
 # Install packages by category
 if [ -n "${HYPRLAND_PACKAGES:-}" ]; then
@@ -258,9 +258,9 @@ if [ "$SKIP_DOTFILES" = false ]; then
         sudo -u "$USERNAME" mv "$CONFIG_DIR" "$BACKUP_DIR"
     fi
     
-    # Clone the repository
+    # Clone the repository with submodules
     log_info "Cloning dotfiles from $CONFIG_REPO"
-    sudo -u "$USERNAME" git clone "$CONFIG_REPO" "$CONFIG_DIR"
+    sudo -u "$USERNAME" git clone --recurse-submodules "$CONFIG_REPO" "$CONFIG_DIR"
     
     # Set proper ownership
     chown -R "$USERNAME:$USERNAME" "$CONFIG_DIR"
