@@ -1,217 +1,219 @@
 // -*- mode: jsonc -*-
-[{
-    "output": "DP-4",
-    "margin-top": 0,
-    "margin-left": 0,
-    "margin-right": 0,
-    "height": 35,
-    "spacing": 4, // Gaps between modules (4px)
-    "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/submap"
-    ],
-     "modules-center": [
-         "privacy"     
-     ],
-    "modules-right": [
-        //"idle_inhibitor",
-        "systemd-failed-units",
-        "pulseaudio",
-        "custom/microphone",
-        "custom/network",
-        "clock",
-        "custom/power"
-    ],
-    "privacy": {
-        "icon-spacing": 4,
-        "icon-size": 18,
-        "transition-duration": 250,
-        "modules": [
-            {
-                "type": "screenshare",
-                "tooltip": true,
-                "tooltip-icon-size": 24
-            },
-            {
-                "type": "audio-in",
-                "tooltip": true,
-                "tooltip-icon-size": 24
-            }
+[
+    {
+        "output": "DP-4",
+        "margin-top": 0,
+        "margin-left": 0,
+        "margin-right": 0,
+        "height": 35,
+        "spacing": 4, // Gaps between modules (4px)
+        "modules-left": [
+            "hyprland/workspaces",
+            "hyprland/submap"
         ],
-        "ignore-monitor": true,
-        "ignore": [
-            {
-                "type": "audio-in",
-                "name": "cava"
-            }
-        ]
-    },
-    "systemd-failed-units": {
-        "hide-on-ok": true,
-        "format": "✗ {nr_failed}",
-        "format-ok": "✓",
-        "system": true,
-        "user": true 
-    },
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": false,
-        "warp-on-scroll": false,
-        "format": "{name}",
-        "format-icons": {
-            "active": "->"
-        }
-    },
-    "hyprland/submap": {
-        "format": "| >_{}",
-        "default-submap": "default",
-        "always-on": false
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "clock": {
-        "format": "{:%H:%M}",
-        "tooltip": true,
-        "tooltip-format": "{:%A, %B %d, %Y\n%H:%M:%S}",
-        "interval": 60
-    },
-    "custom/network": {
-        "exec": "$HOME/.config/waybar/scripts/network-status.sh 2> /dev/null",
-        "interval": 15,
-        "return-type": "json",
-        "on-click": "$HOME/.config/waybar/scripts/network-status.sh toggle 2> /dev/null",
-        "menu": "on-click-right",
-        "menu-file": "$HOME/.config/waybar/menus/network_menu.xml",
-        "menu-actions": {
-            "connect": "setsid kitty -e bash -c 'echo \"Available WiFi Networks:\"; echo \"========================\"; nmcli -p d wifi l; echo \"\"; echo \"To connect to a network, use:\"; echo \"nmcli dev wifi connect <SSID> password <PASSWORD>\"; exec bash' >/dev/null 2>&1 &",
-            "disconnect": "setsid nmcli device disconnect $(nmcli -t -f DEVICE,TYPE device statu | grep wifi$ | cut -d: -f1) >/dev/null 2>&1 &",
-            "scan": "setsid kitty -e bash -c 'echo \"Scanning for WiFi networks...\"; nmcli dev wifi rescan; sleep 2; echo \"Available Networks:\"; echo \"==================\"; nmcli -p d wifi l; exec bash' >/dev/null 2>&1 &",
-            "status": "setsid kitty -e bash -c 'echo \"Network Status:\"; echo \"===============\"; nmcli device status; echo \"\"; echo \"Connection Details:\"; echo \"==================\"; nmcli connection show --active; exec bash' >/dev/null 2>&1 &",
-            "settings": "setsid nm-connection-editor >/dev/null 2>&1 &"
-        }
-    },
-    "pulseaudio": {
-        //"scroll-step": 5,
-        "format": "{volume}% {icon}",
-        "format-muted": " ",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "",
-                "",
-                ""
+        "modules-center": [
+            "privacy"
+        ],
+        "modules-right": [
+            //"idle_inhibitor",
+            "systemd-failed-units",
+            "pulseaudio",
+            "custom/microphone",
+            "custom/network",
+            "clock",
+            "custom/power"
+        ],
+        "privacy": {
+            "icon-spacing": 4,
+            "icon-size": 18,
+            "transition-duration": 250,
+            "modules": [
+                {
+                    "type": "screenshare",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                },
+                {
+                    "type": "audio-in",
+                    "tooltip": true,
+                    "tooltip-icon-size": 24
+                }
+            ],
+            "ignore-monitor": true,
+            "ignore": [
+                {
+                    "type": "audio-in",
+                    "name": "cava"
+                }
             ]
         },
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "menu": "on-click-right",
-        "menu-file": "$HOME/.config/waybar/menus/audio_menu.xml",
-        "menu-actions": {
-            "mute_unmute": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-            "audio_settings": "setsid pavucontrol >/dev/null 2>&1 &"
+        "systemd-failed-units": {
+            "hide-on-ok": true,
+            "format": "✗ {nr_failed}",
+            "format-ok": "✓",
+            "system": true,
+            "user": true
+        },
+        "hyprland/workspaces": {
+            "disable-scroll": true,
+            "all-outputs": false,
+            "warp-on-scroll": false,
+            "format": "{name}",
+            "format-icons": {
+                "active": "->"
+            }
+        },
+        "hyprland/submap": {
+            "format": "| >_{}",
+            "default-submap": "default",
+            "always-on": false
+        },
+        "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons": {
+                "activated": "",
+                "deactivated": ""
+            }
+        },
+        "clock": {
+            "format": "{:%H:%M}",
+            "tooltip": true,
+            "tooltip-format": "{:%A, %B %d, %Y\n%H:%M:%S}",
+            "interval": 60
+        },
+        "custom/network": {
+            "exec": "$HOME/.config/waybar/scripts/network-status.sh 2> /dev/null",
+            "interval": 15,
+            "return-type": "json",
+            "on-click": "$HOME/.config/waybar/scripts/network-status.sh toggle 2> /dev/null",
+            "menu": "on-click-right",
+            "menu-file": "$HOME/.config/waybar/menus/network_menu.xml",
+            "menu-actions": {
+                "connect": "setsid kitty -e bash -c 'echo \"Available WiFi Networks:\"; echo \"========================\"; nmcli -p d wifi l; echo \"\"; echo \"To connect to a network, use:\"; echo \"nmcli dev wifi connect <SSID> password <PASSWORD>\"; exec bash' >/dev/null 2>&1 &",
+                "disconnect": "setsid nmcli device disconnect $(nmcli -t -f DEVICE,TYPE device statu | grep wifi$ | cut -d: -f1) >/dev/null 2>&1 &",
+                "scan": "setsid kitty -e bash -c 'echo \"Scanning for WiFi networks...\"; nmcli dev wifi rescan; sleep 2; echo \"Available Networks:\"; echo \"==================\"; nmcli -p d wifi l; exec bash' >/dev/null 2>&1 &",
+                "status": "setsid kitty -e bash -c 'echo \"Network Status:\"; echo \"===============\"; nmcli device status; echo \"\"; echo \"Connection Details:\"; echo \"==================\"; nmcli connection show --active; exec bash' >/dev/null 2>&1 &",
+                "settings": "setsid nm-connection-editor >/dev/null 2>&1 &"
+            }
+        },
+        "pulseaudio": {
+            //"scroll-step": 5,
+            "format": "{volume}% {icon}",
+            "format-muted": " ",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+            "menu": "on-click-right",
+            "menu-file": "$HOME/.config/waybar/menus/audio_menu.xml",
+            "menu-actions": {
+                "mute_unmute": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+                "audio_settings": "setsid pavucontrol >/dev/null 2>&1 &"
+            }
+        },
+        "custom/microphone": {
+            "exec": "$HOME/.config/waybar/scripts/microphone-module.sh 2> /dev/null",
+            "interval": 5,
+            "return-type": "json",
+            "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+            "menu": "on-click-right",
+            "menu-file": "$HOME/.config/waybar/menus/audio_menu.xml",
+            "menu-actions": {
+                "mute_unmute": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+                "audio_settings": "setsid pavucontrol >/dev/null 2>&1 &"
+            }
+        },
+        "custom/power": {
+            "format": " ⏻ ",
+            "tooltip": false,
+            "menu": "on-click",
+            "menu-file": "$HOME/.config/waybar/menus/power_menu.xml",
+            "menu-actions": {
+                "shutdown": "shutdown now",
+                "reboot": "reboot",
+                "suspend": "systemctl suspend",
+                "logout": "loginctl terminate-user $(whoami)"
+            }
         }
     },
-    "custom/microphone": {
-        "exec": "$HOME/.config/waybar/scripts/microphone-module.sh 2> /dev/null",
-        "interval": 5,
-        "return-type": "json",
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-        "menu": "on-click-right",
-        "menu-file": "$HOME/.config/waybar/menus/audio_menu.xml",
-        "menu-actions": {
-            "mute_unmute": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-            "audio_settings": "setsid pavucontrol >/dev/null 2>&1 &"
-        }
-    },
-    "custom/power": {
-        "format": " ⏻ ",
-        "tooltip": false,
-        "menu": "on-click",
-        "menu-file": "$HOME/.config/waybar/menus/power_menu.xml",
-        "menu-actions": {
-            "shutdown": "shutdown now",
-            "reboot": "reboot",
-            "suspend": "systemctl suspend",
-            "hibernate": "systemctl hibernate"
+    {
+        "layer": "top",
+        "output": "DP-3",
+        "margin-top": 0,
+        "margin-left": 0,
+        "margin-right": 0,
+        "height": 35,
+        "modules-left": [
+            "hyprland/workspaces",
+            "hyprland/submap"
+        ],
+        "modules-right": [
+            "custom/gpu-title",
+            "custom/gpu-usage",
+            "custom/gpu-temp",
+            "custom/gpu-mem",
+            "custom/separator",
+            "custom/cpu-usage-temp",
+            "custom/separator",
+            "memory"
+        ],
+        "hyprland/workspaces": {
+            "disable-scroll": true,
+            "all-outputs": false,
+            "warp-on-scroll": false,
+            "format": "{name}",
+            "format-icons": {
+                "active": "->"
+            }
+        },
+        "hyprland/submap": {
+            "format": "| >_{}",
+            "default-submap": "default",
+            "always-on": false
+        },
+        "custom/gpu-title": {
+            "exec": "~/.config/waybar/scripts/gpu/gpu-title.sh",
+            "interval": 15,
+            "return-type": "json"
+        },
+        "custom/gpu-usage": {
+            "exec": "~/.config/waybar/scripts/gpu/gpu-usage.sh",
+            "interval": 15,
+            "return-type": "json"
+        },
+        "custom/gpu-temp": {
+            "exec": "~/.config/waybar/scripts/gpu/gpu-temp.sh",
+            "interval": 15,
+            "return-type": "json"
+        },
+        "custom/gpu-mem": {
+            "exec": "~/.config/waybar/scripts/gpu/gpu-mem.sh",
+            "interval": 15,
+            "return-type": "json"
+        },
+        "custom/cpu-usage-temp": {
+            "exec": "~/.config/waybar/scripts/cpu-usage-temp.sh",
+            "interval": 15,
+            "return-type": "json"
+        },
+        "custom/separator": {
+            "format": "|"
+        },
+        "memory": {
+            "interval": 30,
+            "format": "RAM {percentage}%",
+            "tooltip": true,
+            "tooltip-format": "RAM {used:0.1f}/{total:0.1f} GB\nSwap {swapUsed:0.1f}/{swapTotal:0.1f} GB"
         }
     }
-},
-{
-    "layer": "top", 
-    "output": "DP-3",
-    "margin-top": 0,
-    "margin-left": 0,
-    "margin-right": 0,
-    "height": 35,
-    "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/submap"
-    ],
-    "modules-right":[
-        "custom/gpu-title",
-        "custom/gpu-usage",
-        "custom/gpu-temp",
-        "custom/gpu-mem",
-        "custom/separator",
-        "custom/cpu-usage-temp",
-        "custom/separator",
-        "memory"
-    ],
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": false,
-        "warp-on-scroll": false,
-        "format": "{name}",
-        "format-icons": {
-            "active": "->"
-        }
-    },
-    "hyprland/submap": {
-        "format": "| >_{}",
-        "default-submap": "default",
-        "always-on": false
-    },
-    "custom/gpu-title": {
-        "exec": "~/.config/waybar/scripts/gpu/gpu-title.sh",
-        "interval": 15,
-        "return-type": "json"
-    },
-    "custom/gpu-usage": {
-        "exec": "~/.config/waybar/scripts/gpu/gpu-usage.sh",
-        "interval": 15,
-        "return-type": "json"
-    },
-    "custom/gpu-temp": {
-        "exec": "~/.config/waybar/scripts/gpu/gpu-temp.sh",
-        "interval": 15,
-        "return-type": "json"
-    },
-    "custom/gpu-mem": {
-        "exec": "~/.config/waybar/scripts/gpu/gpu-mem.sh",
-        "interval": 15,
-        "return-type": "json"
-    },
-    "custom/cpu-usage-temp": {
-        "exec": "~/.config/waybar/scripts/cpu-usage-temp.sh",
-        "interval": 15,
-        "return-type": "json"
-    },
-    "custom/separator": {
-        "format": "|"
-    },
-    "memory": {
-        "interval": 30,
-        "format": "RAM {percentage}%",
-        "tooltip": true,
-        "tooltip-format": "RAM {used:0.1f}/{total:0.1f} GB\nSwap {swapUsed:0.1f}/{swapTotal:0.1f} GB"
-    }
-}]
+]

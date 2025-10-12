@@ -35,6 +35,10 @@ waybar/state/**
 !satty/
 !satty/**
 
+#installer
+!system-installer/
+!system-installer/**
+
 # Re-ignore sensitive files or directories
 .ssh/
 .gnupg/
