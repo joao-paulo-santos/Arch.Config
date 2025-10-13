@@ -50,7 +50,7 @@ categorize_packages() {
 }
 
 # Extract package categories (using OFFICIAL_PACKAGES only, not AUR)
-HYPRLAND_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(^hypr|waybar|rofi|swww|hyprpaper|swaybg|mpvpaper|satty|waytrogen)$" || true)
+HYPRLAND_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(hypr.*|waybar|rofi|swww|swaybg|mpvpaper|satty|waytrogen)$" || true)
 AUDIO_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber)" || true)
 GRAPHICS_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(nvidia|mesa|vulkan|intel-media-driver|gpu)" || true)
 DEV_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(^git$|^code$|^nvim$|^neovim$|nodejs|npm|python|gcc|make|cmake|base-devel)" || true)
@@ -59,7 +59,7 @@ FONT_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(font|ttf-|noto|nerd)" || t
 NETWORK_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(networkmanager|wifi|bluetooth|openssh)" || true)
 
 # Remove categorized packages from the main list to avoid duplicates
-REMAINING_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -vE "(^hypr|waybar|rofi|swww|hyprpaper|swaybg|mpvpaper|satty|waytrogen|pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber|nvidia|mesa|vulkan|intel-media-driver|gpu|^git$|^code$|^nvim$|^neovim$|nodejs|npm|python|gcc|make|cmake|base-devel|kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch|font|ttf-|noto|nerd|networkmanager|wifi|bluetooth|openssh)" || echo "$OFFICIAL_PACKAGES")
+REMAINING_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -vE "^(hypr.*|waybar|rofi|swww|swaybg|mpvpaper|satty|waytrogen|pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber|nvidia|mesa|vulkan|intel-media-driver|gpu|git|code|nvim|neovim|nodejs|npm|python|gcc|make|cmake|base-devel|kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch|font|ttf-|noto|nerd|networkmanager|wifi|bluetooth|openssh)$" || echo "$OFFICIAL_PACKAGES")
 
 # Start creating the installer script
 cat > "$TEMP_INSTALLER" << 'EOF'

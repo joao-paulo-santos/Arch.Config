@@ -178,7 +178,7 @@ install_aur_packages() {
 
 
 # HYPRLAND packages
-HYPRLAND_PACKAGES=(hyprpaper rofi satty swaybg swww waybar)
+HYPRLAND_PACKAGES=(hypridle hyprland hyprpaper hyprshot rofi satty swaybg swww waybar)
 
 # AUDIO packages
 AUDIO_PACKAGES=(pavucontrol pipewire-pulse)
@@ -199,7 +199,7 @@ FONT_PACKAGES=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-liberation)
 NETWORK_PACKAGES=(networkmanager openssh)
 
 # OTHER packages
-OTHER_PACKAGES=(acpid amd-ucode base brightnessctl ddcutil discord dolphin dotnet-sdk efibootmgr gimp gnome-keyring gptfdisk jdk-openjdk jdk21-openjdk jq linux linux-firmware linux-lts linux-lts-headers man-db man-pages nano nm-connection-editor ntfs-3g parted reflector rtkit socat steam steam-native-runtime sudo swaync texinfo ufw usbutils wl-clipboard)
+OTHER_PACKAGES=(acpid amd-ucode base brightnessctl ddcutil discord dolphin dotnet-sdk efibootmgr gimp gnome-keyring gptfdisk jdk-openjdk jdk21-openjdk jq linux linux-firmware linux-lts linux-lts-headers man-db man-pages nano nm-connection-editor noto-fonts-emoji ntfs-3g nvidia-open nvidia-open-lts nvidia-settings nvidia-utils parted pipewire-pulse reflector rtkit socat steam steam-native-runtime sudo swaync texinfo ttf-jetbrains-mono-nerd ttf-liberation ufw usbutils vulkan-tools wl-clipboard)
 
 # AUR packages
 AUR_PACKAGES=(awakened-poe-trade-git brave-bin github-desktop-bin github-desktop-bin-debug hypr-bg-manager swengine-debug visual-studio-code-bin yay yay-debug)
