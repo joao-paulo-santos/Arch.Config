@@ -11,11 +11,15 @@
 !kitty/**
 !neofetch/
 !neofetch/**
-!hypr/
-!hypr/**
 !kdeglobals
 !nvim/
 !nvim/init.lua
+
+#hyprland
+!hypr/
+!hypr/**
+hypr/wallpapers/**
+hypr/plugins/**
 
 #waybar
 !waybar/

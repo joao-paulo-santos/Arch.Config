@@ -2,7 +2,7 @@
 TerminalApplication=kitty
 
 [KDE]
-ShowDeleteCommand=false
+ShowDeleteCommand=true
 
 [PreviewSettings]
 EnableRemoteFolderThumbnail=false
