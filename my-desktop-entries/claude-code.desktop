@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Claude Code
+Icon=claude
+Comment=Claude Code Cli tool
+Terminal=false
+TryExec=kitty
+Exec=kitty --title claude_term -e sh -c "cd ~/.tmp/.copilot && claude"
+Type=Application
+MimeType=inode/directory
+Categories=Utility;Core;System;FileTools;FileManager;ConsoleOnly
+Keywords=File;Manager;Explorer;Browser;Launcher

@@ -1,4 +1,5 @@
-@import "macchiato.css";
+@import "themes/neutral.css";
+
 
 * {
     font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
@@ -22,7 +23,7 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px @selected;
 }
 
 #workspaces {
@@ -32,7 +33,7 @@ button:hover {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #ffffff;
+    color: @text;
 }
 
 
@@ -40,24 +41,17 @@ button:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 
-#workspaces button.focused {
-    background-color: @lavender;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: @urgent;
 }
 
 #workspaces button.active {
-    /* background-color: @surface2; */
-    /* color: green; */
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px @selected;
 }
 
 #mode {
     background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px @text;
 }
 
 #battery,
@@ -79,7 +73,7 @@ button:hover {
 #power-profiles-daemon,
 #mpd {
     padding: 0 10px;
-    color: #ffffff;
+    color: @text;
 }
 
 #window,
@@ -88,20 +82,20 @@ button:hover {
 }
 
 #custom-workspacesico {
-     margin: 0 8px;
+    margin: 0 8px;
 }
 
 .modules-right {
     background-color: rgba(0, 0, 0, 0);
     border-radius: 0px;
-    border-bottom-left-radius : 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .modules-left {
     background-color: rgba(0, 0, 0, 0);
     margin-left: 0px;
-    border-bottom-right-radius : 20px;
-    border-bottom-left-radius : 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .modules-right {
@@ -131,7 +125,7 @@ button:hover {
 }
 
 #clock {
-    color: #ffffff;
+    color: @text;
     padding: 0 5px;
 }
 
@@ -146,11 +140,11 @@ label:focus {
 }
 
 #cpu {
-    color: #ffffff;
+    color: @text;
 }
 
 #memory {
-    color: #ffffff;
+    color: @text;
     padding: 0 5px;
 }
 
@@ -159,7 +153,7 @@ label:focus {
 }
 
 #network {
-    color: #ffffff;
+    color: @text;
 }
 
 #network.disconnected {
@@ -168,11 +162,11 @@ label:focus {
 
 #submap {
     padding-right: 8px;
-    color: #ffffff;
+    color: @text;
 }
 
 #pulseaudio {
-    color: #ffffff;
+    color: @text;
     padding: 0 5px 0 5px;
     background: none;
     transition: background 0.2s ease;
@@ -184,7 +178,7 @@ label:focus {
 }
 
 #pulseaudio.source-muted {
-    color: #ffffff;
+    color: @text;
 }
 
 #pulseaudio.muted {
@@ -235,110 +229,168 @@ label:focus {
     background-color: #0069d4;
 }
 
-/* Modern menu styling */
+/* Mac-inspired menu styling */
 menu {
-    border-radius: 15px;
-    background: #161320;
-    color: #B5E8E0;
-    border: 1px solid rgba(181, 232, 224, 0.2);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    padding: 8px;
-    margin: 4px;
+    border-radius: 8px;
+    background: rgba(36, 39, 58, 0.95);
+    color: #cad3f5;
+    border: 1px solid rgba(202, 211, 245, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    font-size: 13px;
+    font-weight: 400;
+    margin: 2px;
+    padding: 2px;
 }
 
 menuitem {
-    border-radius: 10px;
-    padding: 8px 16px;
-    margin: 2px;
-    transition: all 0.2s ease;
-    color: #B5E8E0;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    color: #cad3f5;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    margin: 0;
+    padding: 6px 0px;
 }
 
 menuitem:hover {
-    background: rgba(181, 232, 224, 0.15);
-    color: #ffffff;
-    box-shadow: 0 2px 8px rgba(181, 232, 224, 0.1);
+    background: rgba(138, 173, 244, 0.2);
+    color: #cad3f5;
+    box-shadow: none;
 }
 
 menuitem:selected {
-    background: rgba(181, 232, 224, 0.25);
-    color: #ffffff;
+    background: rgba(138, 173, 244, 0.25);
+    color: #cad3f5;
+    box-shadow: 0 2px 8px rgba(138, 173, 244, 0.1);
+}
+
+menuitem:active {
+    background: rgba(138, 173, 244, 0.3);
 }
 
 separator {
-    background: rgba(181, 232, 224, 0.2);
-    margin: 4px 8px;
-    min-height: 1px;
+    background: rgba(202, 211, 245, 0.15);
+    margin: 6px 12px;
+    border: none;
+}
+
+/* Menu sections (for grouped menu items) */
+menu section {
+    padding: 2px 0;
+}
+
+menu section:first-child {
+    padding-top: 0;
+}
+
+menu section:last-child {
+    padding-bottom: 0;
+}
+
+/* Disabled menu items */
+menuitem:disabled {
+    color: #6e738d;
+    opacity: 0.5;
+}
+
+menuitem:disabled:hover {
+    background: transparent;
+}
+
+/* Menu items with icons */
+menuitem image {
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+/* Accelerator labels (keyboard shortcuts) */
+menuitem accelerator {
+    color: #6e738d;
+    font-size: 12px;
 }
 
 /* default text */
 #custom-cpu-usage-temp {
     padding: 0 5px;
-  color: #c0c0c0;
+    color: #c0c0c0;
 }
 
 /* classes applied from script */
 #custom-cpu-usage-temp.cpu-temp-normal {
-  color: #ffffff; /* green */
+    color: @text;
+    /* green */
 }
+
 #custom-cpu-usage-temp.cpu-temp-warn {
-  color: #e0a95c; /* orange */
+    color: #e0a95c;
+    /* orange */
 }
+
 #custom-cpu-usage-temp.cpu-temp-critical {
-  color: #ff6b6b; /* red */
+    color: #ff6b6b;
+    /* red */
 }
+
 #custom-cpu-usage-temp.cpu-temp-unknown {
-  color: #e0a95c; /* grey */
+    color: #e0a95c;
+    /* grey */
 }
 
 /* GPU Usage */
 #custom-gpu-usage {
     padding: 0 5px;
-    color: #ffffff;
+    color: @text;
 }
+
 #custom-gpu-usage.gpu-usage-warn {
-  color: #e0a95c;
+    color: #e0a95c;
 }
+
 #custom-gpu-usage.gpu-usage-critical {
-  color: #ff6b6b;
+    color: #ff6b6b;
 }
 
 /* GPU Temperature */
 #custom-gpu-temp {
     padding: 0 5px;
-    color: #ffffff;
+    color: @text;
 }
+
 #custom-gpu-temp.gpu-temp-warn {
-  color: #e0a95c;
+    color: #e0a95c;
 }
+
 #custom-gpu-temp.gpu-temp-critical {
-  color: #ff6b6b;
+    color: #ff6b6b;
 }
 
 /* GPU Memory */
 #custom-gpu-mem {
     padding: 0 5px;
-  color: #ffffff;
+    color: @text;
 }
+
 #custom-gpu-mem.gpu-mem-warn {
-  color: #e0a95c;
+    color: #e0a95c;
 }
+
 #custom-gpu-mem.gpu-mem-critical {
-  color: #ff6b6b;
+    color: #ff6b6b;
 }
 
 #custom-gpu-title {
-  color: #ffffff;
-  padding: 0 5px 0 0;
+    color: @text;
+    padding: 0 5px 0 0;
 }
 
 #custom-network {
-  color: #ffffff;
-  padding: 0 10px 0 5px;
+    color: @text;
+    padding: 0 10px 0 5px;
 }
 
 #custom-network.disconnected {
-  color: #ff6b6b;
+    color: #ff6b6b;
 }
 
 #custom-clock {
@@ -347,18 +399,18 @@ separator {
 }
 
 #custom-separator {
-    color: #ffffff;
+    color: @text;
     padding: 0 5px;
 }
 
 #systemd-failed-units {
-    color: #ffffff;
+    color: @text;
     padding: 0 5px;
 }
 
 /* Microphone Module */
 #custom-microphone {
-    color: #ffffff;
+    color: @text;
     padding: 0 10px 0 5px;
     background: none;
     transition: background 0.2s ease;
@@ -366,9 +418,9 @@ separator {
 }
 
 #custom-microphone.microphone-muted {
-    color: #ffffff;
+    color: @text;
 }
 
 #custom-microphone.microphone-active {
-    color: #1ca000;
+    color: @transmitting;
 }
