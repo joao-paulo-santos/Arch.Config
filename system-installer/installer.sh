@@ -187,22 +187,22 @@ AUDIO_PACKAGES=(pavucontrol pipewire-pulse)
 GRAPHICS_PACKAGES=(nvidia-open nvidia-open-lts nvidia-settings nvidia-utils vulkan-tools)
 
 # DEV packages
-DEV_PACKAGES=(base-devel git neovim nodejs npm)
+DEV_PACKAGES=(base-devel cmake git neovim nodejs npm)
 
 # TERMINAL packages
 TERMINAL_PACKAGES=(htop kitty zsh)
 
 # FONT packages
-FONT_PACKAGES=(noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-liberation)
+FONT_PACKAGES=(noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-liberation)
 
 # NETWORK packages
 NETWORK_PACKAGES=(networkmanager openssh)
 
 # OTHER packages
-OTHER_PACKAGES=(acpid amd-ucode base brightnessctl ddcutil discord dolphin dotnet-sdk efibootmgr gimp gnome-keyring gptfdisk jdk-openjdk jdk21-openjdk jq linux linux-firmware linux-lts linux-lts-headers man-db man-pages nano nm-connection-editor noto-fonts-emoji ntfs-3g nvidia-open nvidia-open-lts nvidia-settings nvidia-utils parted pipewire-pulse reflector rtkit socat steam steam-native-runtime sudo swaync texinfo ttf-jetbrains-mono-nerd ttf-liberation ufw usbutils vulkan-tools wl-clipboard)
+OTHER_PACKAGES=(7zip acpid amd-ucode base brightnessctl cpio cups ddcutil discord dosbox dotnet-sdk efibootmgr emacs fd flatpak fzf gimp gnome-keyring gnome-text-editor gptfdisk imagemagick iw jdk-openjdk jdk21-openjdk jq lib32-gst-plugins-base-libs lib32-gtk3 lib32-libxslt lib32-ocl-icd lib32-v4l-utils linux linux-firmware linux-lts linux-lts-headers lutris man-db man-pages meson nano nm-connection-editor noto-fonts-cjk noto-fonts-emoji ntfs-3g nvidia-open nvidia-open-lts nvidia-settings nvidia-utils openrgb parted pipewire-pulse prismlauncher reflector resvg retroarch rtkit samba socat steam strace sudo swaync texinfo ttf-jetbrains-mono-nerd ttf-liberation ufw usbutils veracrypt vulkan-tools wine-staging winetricks wl-clipboard xdg-desktop-portal-gtk xdg-desktop-portal-hyprland yazi zoxide)
 
 # AUR packages
-AUR_PACKAGES=(awakened-poe-trade-git brave-bin github-desktop-bin github-desktop-bin-debug hypr-bg-manager swengine-debug visual-studio-code-bin yay yay-debug)
+AUR_PACKAGES=(awakened-poe-trade-git brave-bin emulationstation-de emulationstation-de-debug eww eww-debug freeimage freeimage-debug github-desktop-bin github-desktop-bin-debug glew1.10 gtk2 hypr-bg-manager lib32-glew1.10 lib32-gtk2 lib32-libappindicator-gtk2 lib32-libdbusmenu-gtk2 lib32-libgcrypt15 lib32-libidn11 lib32-libindicator-gtk2 lib32-libjpeg6-turbo lib32-libpng12 lib32-librtmp0 lib32-libtiff4 lib32-libudev0-shim lib32-libvpx1.3 libdbusmenu-gtk2 libgcrypt15 libidn11 libindicator-gtk2 libjpeg6-turbo libpng12 librtmp0 libtiff4 libudev0-shim libvpx1.3 mirage mirage-debug steam-native-runtime swengine-debug visual-studio-code-bin xdg-desktop-portal-termfilechooser-hunkyburrito-git xdg-desktop-portal-termfilechooser-hunkyburrito-git-debug yay yay-debug)
 
 # Install packages by category
 if [ -n "${HYPRLAND_PACKAGES:-}" ]; then
