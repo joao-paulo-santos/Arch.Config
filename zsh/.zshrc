@@ -1,6 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
+ZSH_DIR="${ZDOTDIR:-$HOME}/.config/zsh"
 
 # CASE_SENSITIVE="true"
 # HYPHEN_INSENSITIVE="true"
@@ -41,3 +42,10 @@ alias cd....="cd ../../.."
 if [[ "$(tty)" == "/dev/tty1" && -z "$(pidof Xwayland)" && -z "$(pidof sway)" && -z "$(pidof hyprland)" ]]; then
     exec Hyprland
 fi
+
+# Zoxide config
+if [[ -f "$ZSH_DIR/.zsh_zoxide" ]]; then
+  source "$ZSH_DIR/.zsh_zoxide"
+fi
+
+eval "$(zoxide init zsh)"

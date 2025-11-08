@@ -6,9 +6,9 @@
 !.gitignore
 !README.md
 !zsh/
-!zsh/**
+!zsh/.zshrc
 !kitty/
-!kitty/**
+!kitty/kitty.conf
 !neofetch/
 !neofetch/**
 !kdeglobals
@@ -26,11 +26,11 @@ hypr/plugins/**
 !waybar/**
 waybar/state/**
 
-#rofi
+#rofi - app launcher
 !rofi/
 !rofi/**
 !my-desktop-entries/
-!my-desktop-entries/**
+!my-desktop-entries/*.desktop
 
 #satty
 !satty/
@@ -39,6 +39,19 @@ waybar/state/**
 #installer
 !system-installer/
 !system-installer/**
+
+# Xdg-desktop-portal
+!xdg-desktop-portal/
+!xdg-desktop-portal/**
+
+# Oppeners
+!mimeapps.list
+
+# Yazi config - file manager
+!yazi/
+!yazi/yazi.toml
+!yazi/keymap.toml
+
 
 # Re-ignore sensitive files or directories
 .ssh/

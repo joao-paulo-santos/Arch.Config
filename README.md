@@ -23,6 +23,18 @@ Features:
 - Trigger modes: workspace change, timer, or both
 - Auto-format detection and service-specific optimization
 
+## Apps
+
+Shell: Zsh
+Terminal: Kitty
+File Manager: Yazi
+Media Player: mpv
+image viewer: mirage
+
+### Misc
+
+Zoxide: cd jumper
+
 ## Quick Setup
 
 For fresh Arch installations, use the [automated installer](system-installer/README.md) to install all packages and restore dotfiles:

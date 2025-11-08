@@ -1,0 +1,15 @@
+[Added Associations]
+video/mp4=mpv.desktop;
+image/jpeg=mirage.desktop
+
+[Default Applications]
+video/mp4=mpv.desktop;
+image/jpeg=mirage.desktop
+text/plain=code.desktop
+text/x-ini=code.desktop
+text/x-config=code.desktop
+text/x-properties=code.desktop
+text/x-shellscript=code.desktop
+text/x-diff=code.desktop
+text/x-log=code.desktop
+text/x-csrc=code.desktop

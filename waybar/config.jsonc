@@ -157,7 +157,7 @@
             "hyprland/workspaces",
             "hyprland/submap"
         ],
-        "modules-right": [
+        /*"modules-right": [
             "custom/gpu-title",
             "custom/gpu-usage",
             "custom/gpu-temp",
@@ -166,7 +166,7 @@
             "custom/cpu-usage-temp",
             "custom/separator",
             "memory"
-        ],
+        ],*/
         "hyprland/workspaces": {
             "disable-scroll": true,
             "all-outputs": false,
