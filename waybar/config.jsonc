@@ -16,6 +16,7 @@
         ],
         "modules-right": [
             //"idle_inhibitor",
+            "tray",
             "systemd-failed-units",
             "pulseaudio",
             "custom/microphone",
@@ -58,9 +59,22 @@
             "disable-scroll": true,
             "all-outputs": false,
             "warp-on-scroll": false,
-            "format": "{name}",
+            "format": "{name} {windows} ",
             "format-icons": {
                 "active": "->"
+            },
+            "format-window-separator": " ",
+            "window-rewrite-default": "",
+            "window-rewrite": {
+                "title<.*youtube.*>": "",
+                "class<Brave-browser>": "󰖟",
+                "class<kitty>": "",
+                "class<GitHub Desktop>": "",
+                "class<Code>": "󰨞",
+                "class<steam>": "",
+                "Minecraft": "󰍳",
+                "prismlauncher": "",
+                "class<discord>": ""
             }
         },
         "hyprland/submap": {
@@ -157,7 +171,7 @@
             "hyprland/workspaces",
             "hyprland/submap"
         ],
-        /*"modules-right": [
+        /* "modules-right": [
             "custom/gpu-title",
             "custom/gpu-usage",
             "custom/gpu-temp",
@@ -167,19 +181,36 @@
             "custom/separator",
             "memory"
         ],*/
+        "modules-center": [
+            "hyprland/window"
+        ],
         "hyprland/workspaces": {
             "disable-scroll": true,
             "all-outputs": false,
             "warp-on-scroll": false,
-            "format": "{name}",
+            "format": "{name} {windows} ",
             "format-icons": {
                 "active": "->"
+            },
+            "format-window-separator": " ",
+            "window-rewrite-default": "",
+            "window-rewrite": {
+                "title<.*youtube.*>": "",
+                "class<Brave-browser>": "󰖟",
+                "class<kitty>": "",
+                "class<GitHub Desktop>": "",
+                "class<Code>": "󰨞",
+                "class<steam>": "",
+                "class<Minecraft>": "󰍳"
             }
         },
         "hyprland/submap": {
             "format": "| >_{}",
             "default-submap": "default",
             "always-on": false
+        },
+        "hyprland/window": {
+            "format": "{class}{title}"
         },
         "custom/gpu-title": {
             "exec": "~/.config/waybar/scripts/gpu/gpu-title.sh",

@@ -49,3 +49,11 @@ if [[ -f "$ZSH_DIR/.zsh_zoxide" ]]; then
 fi
 
 eval "$(zoxide init zsh)"
+
+# enable vi editing mode
+bindkey -v
+
+# optional: make the vi command-mode timeout shorter so Esc is responsive
+# (value in tenths of a second; 10 = 1s)
+KEYTIMEOUT=10
+export KEYTIMEOUT

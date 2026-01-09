@@ -146,6 +146,8 @@ keymap = [
 
 	{ on = "<C-left>", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
 	{ on = "<C-right>", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
+	{ on = "<C-h>", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
+	{ on = "<C-l>", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
 
 	{ on = "{", run = "tab_swap -1", desc = "Swap current tab with previous tab" },
 	{ on = "}", run = "tab_swap 1",  desc = "Swap current tab with next tab" },
