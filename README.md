@@ -27,6 +27,7 @@ Features:
 
 Shell: Zsh
 Terminal: Kitty
+PrintScreen: hyprshot -> Satty
 File Manager: Yazi
 Media Player: mpv
 image viewer: mirage

@@ -67,6 +67,15 @@ async function listWorkspaces() {
   }
 }
 
+async function listTmuxSessions() {
+  const out = await runCmd('tmux', ['list-sessions', '-F', '#{session_name}']);
+  if (!out) return;
+  const sessions = out.trim().split('\n').filter(s => s);
+  for (const session of sessions) {
+    printRow(`tmux > ${session}`, `TMUX:${session}`);
+  }
+}
+
 async function listWindows() {
   const out = await runCmd('hyprctl', ['-j','clients']);
   if (!out) return;
@@ -170,6 +179,18 @@ async function focusWindow(addr) {
   deferHypr(cmd);
 }
 
+async function attachTmuxSession(sessionName) {
+  if (!sessionName) return;
+  try {
+    // Spawn kitty with tmux attach to the session
+    const p = spawn('kitty', ['tmux', 'attach-session', '-t', sessionName], {
+      stdio: 'ignore',
+      detached: true
+    });
+    p.unref();
+  } catch {}
+}
+
 async function listAll() {
   // Calc row first if applicable
   if (INPUT) {
@@ -179,6 +200,7 @@ async function listAll() {
   await listWindows();
   await listApps();
   await listWorkspaces();
+  await listTmuxSessions();
 }
 
 (async () => {
@@ -201,6 +223,9 @@ async function listAll() {
       process.exit(0);
     } else if (ROFI_INFO.startsWith('WIN:')) {
       await focusWindow(ROFI_INFO.slice(4));
+      process.exit(0);
+    } else if (ROFI_INFO.startsWith('TMUX:')) {
+      await attachTmuxSession(ROFI_INFO.slice(5));
       process.exit(0);
     } else {
       process.exit(0);
