@@ -6,3 +6,11 @@
 //@theme "/usr/share/rofi/themes/Arc.rasi"
 
 @theme "/usr/share/rofi/themes/Arc.rasi"
+
+configuration {
+    kb-remove-to-eol: "";    /* Default was Ctrl+k */
+    kb-accept-entry: "Return,KP_Enter"; /* Removed Ctrl+j and Ctrl+m */
+
+    kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+j";
+}
