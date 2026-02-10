@@ -1,3 +1,6 @@
 [submodule "rofi/scripts/rofi-prompt"]
 	path = rofi/scripts/rofi-prompt
 	url = https://github.com/joao-paulo-santos/rofi-prompt.git
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/joao-paulo-santos/nvim.conf.git

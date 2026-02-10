@@ -13,7 +13,7 @@
 !neofetch/**
 !kdeglobals
 !nvim/
-!nvim/init.lua
+!nvim/**
 
 #hyprland
 !hypr/
