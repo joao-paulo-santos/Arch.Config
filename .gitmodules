@@ -1,0 +1,3 @@
+[submodule "rofi/scripts/rofi-prompt"]
+	path = rofi/scripts/rofi-prompt
+	url = https://github.com/joao-paulo-santos/rofi-prompt.git
