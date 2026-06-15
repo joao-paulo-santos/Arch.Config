@@ -3,6 +3,8 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 ZSH_DIR="${ZDOTDIR:-$HOME}/.config/zsh"
 
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit && compinit
 # CASE_SENSITIVE="true"
 # HYPHEN_INSENSITIVE="true"
 
@@ -37,6 +39,7 @@ source $ZSH/oh-my-zsh.sh
 alias cd..="cd .."
 alias cd...="cd ../.."
 alias cd....="cd ../../.."
+alias hmenu='/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi'
 
 # start hyprland
 if [[ "$(tty)" == "/dev/tty1" && -z "$(pidof Xwayland)" && -z "$(pidof sway)" && -z "$(pidof hyprland)" ]]; then
@@ -57,3 +60,19 @@ bindkey -v
 # (value in tenths of a second; 10 = 1s)
 KEYTIMEOUT=10
 export KEYTIMEOUT
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(tv init zsh)"
+
+# Terminal emulator
+export TERMINAL="kitty"
+
+# bun completions
+[ -s "/home/ecila/.bun/_bun" ] && source "/home/ecila/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
