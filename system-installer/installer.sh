@@ -178,19 +178,19 @@ install_aur_packages() {
 
 
 # HYPRLAND packages
-HYPRLAND_PACKAGES=(hypridle hyprland hyprpaper hyprshot rofi satty swaybg swww waybar)
+HYPRLAND_PACKAGES=(hypridle hyprland hyprpaper hyprshot satty waybar)
 
 # AUDIO packages
 AUDIO_PACKAGES=(pavucontrol pipewire-pulse)
 
 # GRAPHICS packages
-GRAPHICS_PACKAGES=(nvidia-open nvidia-open-lts nvidia-settings nvidia-utils vulkan-tools)
+GRAPHICS_PACKAGES=(lib32-vulkan-radeon nvidia-container-toolkit nvidia-open nvidia-open-lts nvidia-settings nvidia-utils vulkan-headers vulkan-radeon vulkan-tools)
 
 # DEV packages
-DEV_PACKAGES=(base-devel cmake git neovim nodejs npm)
+DEV_PACKAGES=(aspnet-runtime base-devel cmake cuda docker docker-compose dotnet-sdk gdb git github-cli jdk21-openjdk meson mingw-w64-binutils mingw-w64-crt mingw-w64-gcc mingw-w64-headers mingw-w64-winpthreads neovim nodejs npm pyenv python-librosa python-numpy python-pip python-pytest sccache strace tree-sitter-cli)
 
 # TERMINAL packages
-TERMINAL_PACKAGES=(htop kitty zsh)
+TERMINAL_PACKAGES=(fd fzf htop jq kitty tmux yazi zoxide zsh)
 
 # FONT packages
 FONT_PACKAGES=(noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-liberation)
@@ -198,11 +198,38 @@ FONT_PACKAGES=(noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-liber
 # NETWORK packages
 NETWORK_PACKAGES=(networkmanager openssh)
 
-# OTHER packages
-OTHER_PACKAGES=(7zip acpid amd-ucode base brightnessctl cpio cups ddcutil discord dosbox dotnet-sdk efibootmgr emacs fd flatpak fzf gimp gnome-keyring gnome-text-editor gptfdisk imagemagick iw jdk-openjdk jdk21-openjdk jq lib32-gst-plugins-base-libs lib32-gtk3 lib32-libxslt lib32-ocl-icd lib32-v4l-utils linux linux-firmware linux-lts linux-lts-headers lutris man-db man-pages meson nano nm-connection-editor noto-fonts-cjk noto-fonts-emoji ntfs-3g nvidia-open nvidia-open-lts nvidia-settings nvidia-utils openrgb parted pipewire-pulse prismlauncher reflector resvg retroarch rtkit samba socat steam strace sudo swaync texinfo ttf-jetbrains-mono-nerd ttf-liberation ufw usbutils veracrypt vulkan-tools wine-staging winetricks wl-clipboard xdg-desktop-portal-gtk xdg-desktop-portal-hyprland yazi zoxide)
+# REVERSE_ENG packages
+REVERSE_ENG_PACKAGES=(ghidra radare2 rizin)
+
+# SYSTEM packages
+SYSTEM_PACKAGES=(acpid amd-ucode base efibootmgr linux linux-firmware linux-lts linux-lts-headers sudo)
+
+# SERVICES packages
+SERVICES_PACKAGES=(cpio man-db man-pages nm-connection-editor polkit-gnome reflector rtkit texinfo ufw)
+
+# DESKTOP packages
+DESKTOP_PACKAGES=(awww brightnessctl gnome-keyring swaync wl-clipboard xdg-desktop-portal-gtk xdg-desktop-portal-hyprland)
+
+# HARDWARE packages
+HARDWARE_PACKAGES=(ddcutil liquidctl openrgb usbmuxd usbutils)
+
+# STORAGE packages
+STORAGE_PACKAGES=(gparted ntfs-3g parted veracrypt)
+
+# GAMING packages
+GAMING_PACKAGES=(lutris prismlauncher steam wine-staging winetricks)
+
+# MEDIA packages
+MEDIA_PACKAGES=(gst-libav gst-plugins-bad gst-plugins-good gst-plugins-ugly imagemagick obs-studio)
+
+# APPS packages
+APPS_PACKAGES=(discord dolphin filelight gimp libreoffice-still qbittorrent)
+
+# UTILITIES packages
+UTILITIES_PACKAGES=(7zip nano socat wget)
 
 # AUR packages
-AUR_PACKAGES=(awakened-poe-trade-git brave-bin emulationstation-de emulationstation-de-debug eww eww-debug freeimage freeimage-debug github-desktop-bin github-desktop-bin-debug glew1.10 gtk2 hypr-bg-manager lib32-glew1.10 lib32-gtk2 lib32-libappindicator-gtk2 lib32-libdbusmenu-gtk2 lib32-libgcrypt15 lib32-libidn11 lib32-libindicator-gtk2 lib32-libjpeg6-turbo lib32-libpng12 lib32-librtmp0 lib32-libtiff4 lib32-libudev0-shim lib32-libvpx1.3 libdbusmenu-gtk2 libgcrypt15 libidn11 libindicator-gtk2 libjpeg6-turbo libpng12 librtmp0 libtiff4 libudev0-shim libvpx1.3 mirage mirage-debug steam-native-runtime swengine-debug visual-studio-code-bin xdg-desktop-portal-termfilechooser-hunkyburrito-git xdg-desktop-portal-termfilechooser-hunkyburrito-git-debug yay yay-debug)
+AUR_PACKAGES=(brave-bin github-desktop-bin yay)
 
 # Install packages by category
 if [ -n "${HYPRLAND_PACKAGES:-}" ]; then
@@ -231,6 +258,46 @@ fi
 
 if [ -n "${FONT_PACKAGES:-}" ]; then
     install_packages "Fonts" "${FONT_PACKAGES[@]}"
+fi
+
+if [ -n "${REVERSE_ENG_PACKAGES:-}" ]; then
+    install_packages "Reverse Engineering" "${REVERSE_ENG_PACKAGES[@]}"
+fi
+
+if [ -n "${SYSTEM_PACKAGES:-}" ]; then
+    install_packages "System/Boot" "${SYSTEM_PACKAGES[@]}"
+fi
+
+if [ -n "${SERVICES_PACKAGES:-}" ]; then
+    install_packages "System Services" "${SERVICES_PACKAGES[@]}"
+fi
+
+if [ -n "${DESKTOP_PACKAGES:-}" ]; then
+    install_packages "Desktop/Wayland" "${DESKTOP_PACKAGES[@]}"
+fi
+
+if [ -n "${HARDWARE_PACKAGES:-}" ]; then
+    install_packages "Hardware" "${HARDWARE_PACKAGES[@]}"
+fi
+
+if [ -n "${STORAGE_PACKAGES:-}" ]; then
+    install_packages "Storage/Filesystem" "${STORAGE_PACKAGES[@]}"
+fi
+
+if [ -n "${GAMING_PACKAGES:-}" ]; then
+    install_packages "Gaming" "${GAMING_PACKAGES[@]}"
+fi
+
+if [ -n "${MEDIA_PACKAGES:-}" ]; then
+    install_packages "Media" "${MEDIA_PACKAGES[@]}"
+fi
+
+if [ -n "${APPS_PACKAGES:-}" ]; then
+    install_packages "Applications" "${APPS_PACKAGES[@]}"
+fi
+
+if [ -n "${UTILITIES_PACKAGES:-}" ]; then
+    install_packages "CLI Utilities" "${UTILITIES_PACKAGES[@]}"
 fi
 
 if [ -n "${OTHER_PACKAGES:-}" ]; then

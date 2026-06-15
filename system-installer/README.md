@@ -156,3 +156,33 @@ These run before the system goes to sleep and are useful for:
 **Logs**: `/var/log/run-on-wake.log`
 
 See [run-on-wake-README.md](run-on-wake-README.md) for complete documentation on adding your own scripts.
+
+## Services
+
+Hardware-specific systemd user services live in `services/`. These are **not** installed by `installer.sh` automatically — run the setup script manually after a fresh install.
+
+### Setup
+
+```bash
+~/.config/system-installer/services/setup-services.sh
+```
+
+This scans each subdirectory in `services/`, installs daemon scripts to `~/.local/bin/`, installs the `.service` file to `~/.config/systemd/user/`, and enables + starts the service.
+
+Each service directory contains:
+- One or more daemon scripts (`.sh`)
+- A `.service` systemd unit file (use `__HOME__` as a placeholder for the home directory)
+
+### Available Services
+
+#### liquidctl-fan
+CPU temperature-based fan control for Lian Li fan controllers (SL-Infinity, etc.) via `liquidctl`. Polls CPU Tctl every 10 seconds and adjusts fan speeds on a fixed-step curve. Includes a hardware guard — skips installation if no Lian Li device is detected or `liquidctl` is not installed.
+
+### Adding a New Service
+
+1. Create a directory: `services/<name>/`
+2. Add your daemon script(s) (`.sh`)
+3. Add a `.service` file using `__HOME__` as the home placeholder
+4. Run `services/setup-services.sh`
+
+For services that need hardware/dependency checks, add a case to the `install_service` function in `setup-services.sh`.

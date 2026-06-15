@@ -53,13 +53,38 @@ categorize_packages() {
 HYPRLAND_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(hypr.*|waybar|rofi|swww|swaybg|mpvpaper|satty|waytrogen)$" || true)
 AUDIO_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber)" || true)
 GRAPHICS_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(nvidia|mesa|vulkan|intel-media-driver|gpu)" || true)
-DEV_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(^git$|^code$|^nvim$|^neovim$|nodejs|npm|python|gcc|make|cmake|base-devel)" || true)
-TERMINAL_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch)" || true)
+DEV_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(^git$|^gh$|github-cli|^code$|^nvim$|^neovim$|nodejs|npm|python|^pyenv$|^gcc$|make|cmake|base-devel|^meson$|^gdb$|^strace$|^sccache$|dotnet|aspnet|^cuda$|^jdk|^docker$|docker-compose|mingw|^tree-sitter)" || true)
+TERMINAL_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch|^fd$|^fzf$|^jq$|^yazi$|^zoxide$)" || true)
 FONT_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(font|ttf-|noto|nerd)" || true)
 NETWORK_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "(networkmanager|wifi|bluetooth|openssh)" || true)
+REVERSE_ENG_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(ghidra|radare2|rizin|binwalk|radare2-cutter)$" || true)
+SYSTEM_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(base|linux|linux-firmware|linux-lts|linux-lts-headers|amd-ucode|intel-ucode|efibootmgr|grub|sudo|acpid|systemd)$" || true)
+SERVICES_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(man-db|man-pages|texinfo|cpio|rtkit|polkit-gnome|polkit-kde-agent|ufw|reflector|nm-connection-editor)$" || true)
+DESKTOP_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(brightnessctl|wl-clipboard|swaync|awww|xdg-desktop-portal.*|gnome-keyring)$" || true)
+HARDWARE_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(ddcutil|liquidctl|openrgb|usbmuxd|usbutils)$" || true)
+STORAGE_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(ntfs-3g|parted|gparted|veracrypt|gdisk|gptfdisk|gpart|udftools)$" || true)
+GAMING_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(steam|lutris|wine.*|winetricks|prismlauncher|retroarch|gamemode|mangohud|gamescope|proton.*)$" || true)
+MEDIA_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(gst-.*|obs-studio|ffmpeg|imagemagick|mpv|vlc)$" || true)
+APPS_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(discord|qbittorrent|libreoffice.*|gimp|filelight|dolphin|inkscape|blender|firefox.*)$" || true)
+UTILITIES_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -E "^(7zip|wget|nano|socat|curl|unzip|zip|p7zip)$" || true)
 
 # Remove categorized packages from the main list to avoid duplicates
-REMAINING_PACKAGES=$(echo "$OFFICIAL_PACKAGES" | grep -vE "^(hypr.*|waybar|rofi|swww|swaybg|mpvpaper|satty|waytrogen|pipewire|pulseaudio|alsa|pamixer|pavucontrol|wireplumber|nvidia|mesa|vulkan|intel-media-driver|gpu|git|code|nvim|neovim|nodejs|npm|python|gcc|make|cmake|base-devel|kitty|alacritty|zsh|fish|tmux|htop|btop|neofetch|fastfetch|font|ttf-|noto|nerd|networkmanager|wifi|bluetooth|openssh)$" || echo "$OFFICIAL_PACKAGES")
+ALL_CATEGORIZED=$(printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
+    "$HYPRLAND_PACKAGES" "$AUDIO_PACKAGES" "$GRAPHICS_PACKAGES" \
+    "$DEV_PACKAGES" "$TERMINAL_PACKAGES" "$FONT_PACKAGES" \
+    "$NETWORK_PACKAGES" "$REVERSE_ENG_PACKAGES" \
+    "$SYSTEM_PACKAGES" "$SERVICES_PACKAGES" "$DESKTOP_PACKAGES" \
+    "$HARDWARE_PACKAGES" "$STORAGE_PACKAGES" "$GAMING_PACKAGES" \
+    "$MEDIA_PACKAGES" "$APPS_PACKAGES" "$UTILITIES_PACKAGES" | sort -u)
+
+if [ -n "$ALL_CATEGORIZED" ]; then
+    echo "$OFFICIAL_PACKAGES" > /tmp/gi_official.txt
+    echo "$ALL_CATEGORIZED" > /tmp/gi_categorized.txt
+    REMAINING_PACKAGES=$(comm -23 /tmp/gi_official.txt /tmp/gi_categorized.txt)
+    rm -f /tmp/gi_official.txt /tmp/gi_categorized.txt
+else
+    REMAINING_PACKAGES="$OFFICIAL_PACKAGES"
+fi
 
 # Start creating the installer script
 cat > "$TEMP_INSTALLER" << 'EOF'
@@ -265,6 +290,16 @@ add_package_array "DEV" "$DEV_PACKAGES"
 add_package_array "TERMINAL" "$TERMINAL_PACKAGES"
 add_package_array "FONT" "$FONT_PACKAGES"
 add_package_array "NETWORK" "$NETWORK_PACKAGES"
+add_package_array "REVERSE_ENG" "$REVERSE_ENG_PACKAGES"
+add_package_array "SYSTEM" "$SYSTEM_PACKAGES"
+add_package_array "SERVICES" "$SERVICES_PACKAGES"
+add_package_array "DESKTOP" "$DESKTOP_PACKAGES"
+add_package_array "HARDWARE" "$HARDWARE_PACKAGES"
+add_package_array "STORAGE" "$STORAGE_PACKAGES"
+add_package_array "GAMING" "$GAMING_PACKAGES"
+add_package_array "MEDIA" "$MEDIA_PACKAGES"
+add_package_array "APPS" "$APPS_PACKAGES"
+add_package_array "UTILITIES" "$UTILITIES_PACKAGES"
 add_package_array "OTHER" "$REMAINING_PACKAGES"
 
 # Add AUR packages if any
@@ -306,6 +341,46 @@ fi
 
 if [ -n "${FONT_PACKAGES:-}" ]; then
     install_packages "Fonts" "${FONT_PACKAGES[@]}"
+fi
+
+if [ -n "${REVERSE_ENG_PACKAGES:-}" ]; then
+    install_packages "Reverse Engineering" "${REVERSE_ENG_PACKAGES[@]}"
+fi
+
+if [ -n "${SYSTEM_PACKAGES:-}" ]; then
+    install_packages "System/Boot" "${SYSTEM_PACKAGES[@]}"
+fi
+
+if [ -n "${SERVICES_PACKAGES:-}" ]; then
+    install_packages "System Services" "${SERVICES_PACKAGES[@]}"
+fi
+
+if [ -n "${DESKTOP_PACKAGES:-}" ]; then
+    install_packages "Desktop/Wayland" "${DESKTOP_PACKAGES[@]}"
+fi
+
+if [ -n "${HARDWARE_PACKAGES:-}" ]; then
+    install_packages "Hardware" "${HARDWARE_PACKAGES[@]}"
+fi
+
+if [ -n "${STORAGE_PACKAGES:-}" ]; then
+    install_packages "Storage/Filesystem" "${STORAGE_PACKAGES[@]}"
+fi
+
+if [ -n "${GAMING_PACKAGES:-}" ]; then
+    install_packages "Gaming" "${GAMING_PACKAGES[@]}"
+fi
+
+if [ -n "${MEDIA_PACKAGES:-}" ]; then
+    install_packages "Media" "${MEDIA_PACKAGES[@]}"
+fi
+
+if [ -n "${APPS_PACKAGES:-}" ]; then
+    install_packages "Applications" "${APPS_PACKAGES[@]}"
+fi
+
+if [ -n "${UTILITIES_PACKAGES:-}" ]; then
+    install_packages "CLI Utilities" "${UTILITIES_PACKAGES[@]}"
 fi
 
 if [ -n "${OTHER_PACKAGES:-}" ]; then
@@ -470,6 +545,16 @@ echo "- Development: $(echo "$DEV_PACKAGES" | wc -w) packages"
 echo "- Terminal/CLI: $(echo "$TERMINAL_PACKAGES" | wc -w) packages"
 echo "- Fonts: $(echo "$FONT_PACKAGES" | wc -w) packages"
 echo "- Network: $(echo "$NETWORK_PACKAGES" | wc -w) packages"
+echo "- Reverse Engineering: $(echo "$REVERSE_ENG_PACKAGES" | wc -w) packages"
+echo "- System/Boot: $(echo "$SYSTEM_PACKAGES" | wc -w) packages"
+echo "- System Services: $(echo "$SERVICES_PACKAGES" | wc -w) packages"
+echo "- Desktop/Wayland: $(echo "$DESKTOP_PACKAGES" | wc -w) packages"
+echo "- Hardware: $(echo "$HARDWARE_PACKAGES" | wc -w) packages"
+echo "- Storage/Filesystem: $(echo "$STORAGE_PACKAGES" | wc -w) packages"
+echo "- Gaming: $(echo "$GAMING_PACKAGES" | wc -w) packages"
+echo "- Media: $(echo "$MEDIA_PACKAGES" | wc -w) packages"
+echo "- Applications: $(echo "$APPS_PACKAGES" | wc -w) packages"
+echo "- CLI Utilities: $(echo "$UTILITIES_PACKAGES" | wc -w) packages"
 echo "- Other: $(echo "$REMAINING_PACKAGES" | wc -w) packages"
 
 if [ -n "$AUR_PACKAGES" ]; then

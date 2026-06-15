@@ -1,0 +1,12 @@
+[Unit]
+Description=Lian Li fan curve daemon
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=__HOME__/.local/bin/lianli-fan-daemon.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
