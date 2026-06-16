@@ -43,7 +43,7 @@ alias hmenu='/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi'
 
 # start hyprland
 if [[ "$(tty)" == "/dev/tty1" && -z "$(pidof Xwayland)" && -z "$(pidof sway)" && -z "$(pidof hyprland)" ]]; then
-    exec Hyprland
+    exec start-hyprland
 fi
 
 # Zoxide config
@@ -65,7 +65,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 export PATH="$HOME/.local/bin:$PATH"
-eval "$(tv init zsh)"
 
 # Terminal emulator
 export TERMINAL="kitty"
