@@ -3,7 +3,15 @@
 -- Based on default config at /usr/share/hypr/hyprland.lua
 
 -- ===== DETECT CURRENT USER =====
-local user = "ecila" -- os.getenv("USER") or "ecila"
+-- Reads from state file if set (for on-the-fly profile switching), otherwise falls back to $USER
+local state_file = os.getenv("HOME") .. "/.config/hypr/state/active-profile"
+local user
+local f = io.open(state_file, "r")
+if f then
+    user = f:read("*l")
+    f:close()
+end
+user = user or os.getenv("USER") or "ecila"
 
 -- ===== MONITORS =====
 require("modules.monitors")
@@ -11,14 +19,19 @@ require("modules.monitors")
 -- ===== ENVIRONMENT VARIABLES =====
 require("modules.env")
 
--- ===== AUTOSTART =====
+-- ===== LOAD USER CONFIG =====
+local userConfig = require("users." .. user)
+
+-- ===== AUTOSTART (shared) =====
 require("modules.autostart")
 
--- ===== LOAD USER THEME =====
-local theme = require("users." .. user)
+-- ===== USER-SPECIFIC STARTUP =====
+if userConfig.init then
+    hl.on("hyprland.start", userConfig.init)
+end
 
 -- ===== APPLY APPEARANCE (themed) =====
-require("modules.appearance").apply(theme)
+require("modules.appearance").apply(userConfig)
 
 -- ===== ANIMATIONS =====
 require("modules.animations")

@@ -1,13 +1,9 @@
 -- Autostart: runs on hyprland.start event
+-- Only shared services here — user-specific startup goes in users/<name>.lua init()
 hl.on("hyprland.start", function()
     -- Core services
     hl.exec_cmd("hypridle")
     hl.exec_cmd("swaync")
-
-    -- Waybar with per-user profile
-    local user = os.getenv("USER") or "ecila"
-    hl.exec_cmd("~/.config/waybar/scripts/waybar-profile.sh " .. user)
-
     hl.exec_cmd("awww-daemon")
 
     -- Portals and agents

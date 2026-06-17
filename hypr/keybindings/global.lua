@@ -15,6 +15,12 @@ function M.setup(ctx)
     -- Toggle floating
     hl.bind(ctx.layer3 .. " + f", hl.dsp.window.float({ action = "toggle" }))
 
+    -- Switch Hyprland profile (theme + keybinds)
+    hl.bind(ctx.layer4 .. " + e", hl.dsp.exec_cmd("~/.config/hypr/scripts/hyprland-profile.sh menu"))
+
+    -- Switch kitty theme
+    hl.bind(ctx.layer4 .. " + r", hl.dsp.exec_cmd("~/.config/kitty/scripts/kitty-theme.sh menu"))
+
     -- Move focus with hjkl (vim) and arrow keys
     hl.bind(l1 .. " + h",     hl.dsp.focus({ direction = "left" }))
     hl.bind(l1 .. " + k",     hl.dsp.focus({ direction = "up" }))
