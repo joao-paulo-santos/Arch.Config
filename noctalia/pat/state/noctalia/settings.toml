@@ -23,6 +23,7 @@ panel_overlap = 0
 radius = 0
 scale = 1.1500000096857548
 shadow = false
+start = [ "launcher", "wallpaper", "workspaces", "workspace-add" ]
 widget_spacing = 10
 
 [brightness]
@@ -157,13 +158,16 @@ network_poll_seconds = 31
 [theme]
 builtin = "Catppuccin"
 community_palette = "Noctalia legacy"
+mode = "dark"
+source = "community"
+wallpaper_scheme = "m3-content"
 
     [theme.templates]
     builtin_ids = [ "hyprland", "kitty" ]
     community_ids = [ "yazi" ]
 
 [wallpaper]
-directory = "/home/ecila/.config/hypr/wallpapers/shared"
+directory = "/home/pat/.config/hypr/wallpapers"
 fill_mode = "stretch"
 transition_duration = 800
 
@@ -172,16 +176,16 @@ transition_duration = 800
     interval_seconds = 120
 
     [wallpaper.default]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-1350952.png"
 
     [wallpaper.last]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-1350952.png"
 
     [wallpaper.monitors.DP-3]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-1350952.png"
 
     [wallpaper.monitors.DP-4]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-1350952.png"
 
 [widget.control-center]
 glyph = "notebook"
@@ -190,6 +194,11 @@ glyph = "notebook"
 capsule = true
 hide_when_no_media = true
 title_scroll = "on_hover"
+
+[widget.workspace-add]
+glyph = "plus"
+tooltip = "New Workspace"
+type = "custom_button"
 
 [widget.workspaces]
 display = "name"
