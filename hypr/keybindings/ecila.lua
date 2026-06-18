@@ -15,9 +15,6 @@ function M.setup(ctx)
   hl.bind(l1 .. " + Space", hl.dsp.exec_cmd(menu))
   hl.bind(l4 .. " + Space", hl.dsp.exec_cmd(hmenu))
 
-  -- Waybar profile switcher
-  hl.bind(l4 .. " + w", hl.dsp.exec_cmd("~/.config/waybar/scripts/waybar-profile.sh menu"))
-
   -- Workspace scrolling with layer4
   hl.bind(l4 .. " + l", hl.dsp.focus({ workspace = "m+1" }))
   hl.bind(l4 .. " + h", hl.dsp.focus({ workspace = "m-1" }))

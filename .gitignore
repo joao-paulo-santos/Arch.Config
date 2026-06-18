@@ -52,6 +52,13 @@ waybar/state/**
 !yazi/yazi.toml
 !yazi/keymap.toml
 
+# Noctalia - bar/wallpaper/notification manager
+!noctalia/
+!noctalia/**/
+noctalia/**/plugins/
+!noctalia/**/noctalia-full-config.toml
+!noctalia/**/settings.toml
+
 
 # Re-ignore sensitive files or directories
 .ssh/

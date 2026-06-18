@@ -70,10 +70,21 @@
             }
         },
         "pulseaudio": {
+            //"scroll-step": 5,
             "format": "{volume}% {icon}",
-            "format-muted": " ",
+            "format-muted": " ",
             "format-icons": {
-                "default": ["", "", ""]
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "",
+                    "",
+                    ""
+                ]
             },
             "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
             "menu": "on-click-right",

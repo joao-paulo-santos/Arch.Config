@@ -60,3 +60,6 @@ require("keybindings.global").setup(ctx)
 pcall(function()
   require("keybindings." .. user).setup(ctx)
 end)
+
+-- For Noctalia Color templates
+require("noctalia")
