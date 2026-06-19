@@ -1,59 +1,113 @@
+[audio]
+enable_sounds = true
+
 [bar.default]
-background_opacity = 0.88999998010694981
+auto_hide = true
+background_opacity = 0.99999997764825821
 capsule_thickness = 0.69999998807907104
-center = [ "control-center" ]
-end = [
-    "tray",
-    "notifications",
-    "clipboard",
-    "network",
-    "bluetooth",
-    "volume",
-    "brightness",
-    "battery",
-    "clock",
-    "session"
-]
+center = []
+contact_shadow = true
+end = [ "tray", "notifications", "clipboard", "clock", "session" ]
 margin_edge = 0
-margin_ends = 0
-padding = 19
+padding = 12
 panel_overlap = 0
 radius = 0
-scale = 1.1500000096857548
-shadow = false
-start = [ "launcher", "wallpaper", "taskbar" ]
-thickness = 40
-widget_spacing = 10
+radius_bottom_left = 24
+radius_bottom_right = 24
+reserve_space = false
+shadow = true
+start = [ "workspace_tray", "launcher" ]
+thickness = 35
+widget_spacing = 24
 
-[brightness]
-enable_ddcutil = true
+[control_center]
+sidebar = "full"
+sidebar_section = "full"
 
-[[control_center.shortcuts]]
-type = "wifi"
+    [[control_center.shortcuts]]
+    type = "wifi"
 
-[[control_center.shortcuts]]
-type = "bluetooth"
+    [[control_center.shortcuts]]
+    type = "bluetooth"
 
-[[control_center.shortcuts]]
-type = "caffeine"
+    [[control_center.shortcuts]]
+    type = "caffeine"
 
-[[control_center.shortcuts]]
-type = "nightlight"
-
-[[control_center.shortcuts]]
-type = "notification"
+    [[control_center.shortcuts]]
+    type = "notification"
 
 [desktop_widgets]
-enabled = false
+enabled = true
+schema_version = 2
+widget_order = [ "desktop-widget-0000000000000001", "desktop-widget-0000000000000002", "desktop-widget-0000000000000003" ]
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget.desktop-widget-0000000000000001]
+    box_height = 80.0
+    box_width = 192.0
+    cx = 2256.0
+    cy = 120.0
+    output = "DP-3"
+    rotation = 0.0
+    type = "audio_visualizer"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000001.settings]
+        aspect_ratio = 2.5
+        background = true
+        background_color = "surface_variant"
+        background_opacity = 0.90000000000000002
+        bands = 32
+        centered = true
+        color_1 = "secondary"
+        color_2 = "error"
+        mirrored = true
+        show_when_idle = true
+
+    [desktop_widgets.widget.desktop-widget-0000000000000002]
+    box_height = 80.0
+    box_width = 160.0
+    cx = 2448.0
+    cy = 120.0
+    output = "DP-3"
+    rotation = 0.0
+    type = "clock"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000002.settings]
+        background_color = "surface_variant"
+        background_opacity = 0.90000000000000002
+        clock_style = "digital"
+        color = "on_error"
+
+    [desktop_widgets.widget.desktop-widget-0000000000000003]
+    box_height = 160.0
+    box_width = 368.0
+    cx = 2344.0
+    cy = 272.0
+    output = "DP-3"
+    rotation = 0.0
+    type = "media_player"
+
+        [desktop_widgets.widget.desktop-widget-0000000000000003.settings]
+        background_color = "surface_variant"
+        background_opacity = 0.90000000000000002
 
 [dock]
-background_opacity = 0.76999998278915882
+background_opacity = 0.89999997988343239
 enabled = true
-icon_size = 49
+icon_size = 70
+inactive_opacity = 0.99999997764825821
+inactive_scale = 1.0
+item_spacing = 12
+launcher_icon = "wheat"
 launcher_position = "start"
-main_axis_padding = 10
-pinned = [ "kitty", "github-desktop", "steam", "brave-browser" ]
-radius = 10
+magnification_scale = 1.2000000029802322
+main_axis_padding = 12
+margin_edge = 0
+pinned = [ "github-desktop", "steam", "brave-browser", "vscode", "org.kde.dolphin", "kitty" ]
 reserve_space = false
 show_dots = true
 
@@ -124,23 +178,31 @@ widget_order = [ "lockscreen-login-box@DP-4", "lockscreen-login-box@DP-3" ]
         show_login_button = true
 
 [shell]
+app_icon_color = "primary"
+clipboard_enabled = true
+corner_radius_scale = 1.2500000186264515
 polkit_agent = true
 settings_show_advanced = true
+ui_scale = 1.1499999999999999
+
+    [shell.animation]
+    enabled = false
 
     [shell.panel]
-    launcher_categories = false
-    launcher_compact = true
+    control_center_placement = "floating"
     launcher_session_search = true
-    launcher_sort_by_usage = false
+    launcher_sort_by_usage = true
     open_near_click_control_center = true
-    open_near_click_wallpaper = true
+    open_near_click_session = true
     open_near_click_workspace_tray = true
-    transparency_mode = "soft"
 
     [shell.screenshot]
     pipe_command = "satty -c ~/.config/satty/config.toml -o $HOME/Media/Screenshots/%Y-%m-%d_%H:%M:%S.png -f -"
     pipe_to_command = true
     save_to_file = false
+
+    [shell.shadow]
+    direction = "down_right"
 
 [system.monitor]
 cpu_poll_seconds = 30
@@ -150,35 +212,32 @@ memory_poll_seconds = 30
 network_poll_seconds = 31
 
 [theme]
-builtin = "Catppuccin"
-community_palette = "Breeze"
-mode = "dark"
-source = "community"
+community_palette = "Rose Pine Moon"
 
     [theme.templates]
     builtin_ids = [ "hyprland", "kitty" ]
-    community_ids = [ "yazi" ]
+    community_ids = [ "vscode", "yazi" ]
 
 [wallpaper]
-directory = "/home/ecila/.config/hypr/wallpapers/shared"
+directory = "/home/pat/.config/hypr/wallpapers"
 fill_mode = "stretch"
 transition_duration = 800
 
     [wallpaper.automation]
-    enabled = true
+    enabled = false
     interval_seconds = 120
 
     [wallpaper.default]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-984422.jpg"
 
     [wallpaper.last]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-984422.jpg"
 
     [wallpaper.monitors.DP-3]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-984422.jpg"
 
     [wallpaper.monitors.DP-4]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-984422.jpg"
 
 [widget.control-center]
 glyph = "notebook"
