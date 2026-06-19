@@ -7,6 +7,12 @@ hl.window_rule({
     suppress_event = "maximize",
 })
 
+-- Confine pointer to fullscreen games
+hl.window_rule({
+    match           = { class = "steam_app_.*|steam_proton|.*\\.exe", fullscreen = true },
+    confine_pointer = true,
+})
+
 -- Fix XWayland drag issues
 hl.window_rule({
     name  = "fix-xwayland-drags",
