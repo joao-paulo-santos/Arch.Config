@@ -28,12 +28,12 @@ function M.setup(ctx)
   hl.bind(ctx.layer3 .. " + t", hl.dsp.exec_cmd("/mnt/prometheus/Dev/Repos/velo/build/velo -e theme"))
 
   -- Move focus with hjkl (vim) and arrow keys
-  hl.bind(l1 .. " + h", hl.dsp.focus({ direction = "left" }))
+  hl.bind(l1 .. " + h", function() hl.dispatch(hl.dsp.focus({ direction = "left" })); warp_if_monitor_changed() end)
   hl.bind(l1 .. " + k", hl.dsp.focus({ direction = "up" }))
   hl.bind(l1 .. " + j", hl.dsp.focus({ direction = "down" }))
-  hl.bind(l1 .. " + l", hl.dsp.focus({ direction = "right" }))
-  hl.bind(l1 .. " + left", hl.dsp.focus({ direction = "left" }))
-  hl.bind(l1 .. " + right", hl.dsp.focus({ direction = "right" }))
+  hl.bind(l1 .. " + l", function() hl.dispatch(hl.dsp.focus({ direction = "right" })); warp_if_monitor_changed() end)
+  hl.bind(l1 .. " + left", function() hl.dispatch(hl.dsp.focus({ direction = "left" })); warp_if_monitor_changed() end)
+  hl.bind(l1 .. " + right", function() hl.dispatch(hl.dsp.focus({ direction = "right" })); warp_if_monitor_changed() end)
   hl.bind(l1 .. " + up", hl.dsp.focus({ direction = "up" }))
   hl.bind(l1 .. " + down", hl.dsp.focus({ direction = "down" }))
 
@@ -51,7 +51,7 @@ function M.setup(ctx)
   -- Move active window to workspace with layer2 + [0-9]
   for i = 1, 10 do
     local key = i % 10
-    hl.bind(l1 .. " + " .. key, hl.dsp.focus({ workspace = i }))
+    hl.bind(l1 .. " + " .. key, function() hl.dispatch(hl.dsp.focus({ workspace = i })); warp_if_monitor_changed() end)
     hl.bind(l2 .. " + " .. key, hl.dsp.window.move({ workspace = i }))
   end
 

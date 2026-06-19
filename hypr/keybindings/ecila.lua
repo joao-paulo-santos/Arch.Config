@@ -38,7 +38,7 @@ function M.setup(ctx)
     "A", "S", "D", "F", "G", "Z", "X", "C", "V", "B", "N", "M" }
 
   for i = 1, #ws_keys do
-    hl.bind(l1 .. " + " .. ws_keys[i], hl.dsp.focus({ workspace = "name:" .. ws_names[i] }))
+    hl.bind(l1 .. " + " .. ws_keys[i], function() hl.dispatch(hl.dsp.focus({ workspace = "name:" .. ws_names[i] })); warp_if_monitor_changed() end)
     hl.bind(l2 .. " + " .. ws_keys[i], hl.dsp.window.move({ workspace = "name:" .. ws_names[i] }))
   end
 

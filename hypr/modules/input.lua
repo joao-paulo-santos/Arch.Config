@@ -16,6 +16,28 @@ hl.config({
     },
 })
 
+-- Cursor configuration
+hl.config({
+    cursor = {
+        no_warps = true,
+    },
+})
+
+-- Warp cursor to focused monitor's center if the monitor changed after a focus action.
+-- Used to wrap keybinds so cursor follows on monitor switches but not on mouse movement.
+function _G.warp_if_monitor_changed()
+    local mon = hl.get_active_monitor()
+    if not mon then return end
+    local pos = hl.get_cursor_pos()
+    if not pos then return end
+    local mw = mon.width / mon.scale
+    local mh = mon.height / mon.scale
+    if pos.x >= mon.x and pos.x < mon.x + mw and pos.y >= mon.y and pos.y < mon.y + mh then
+        return
+    end
+    hl.dispatch(hl.dsp.cursor.move({x = mon.x + mw / 2, y = mon.y + mh / 2}))
+end
+
 -- Per-device configuration
 hl.device({
     name        = "logitech-g502-hero-gaming-mouse",
