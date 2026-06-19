@@ -1,11 +1,9 @@
 [bar.default]
-background_opacity = 0.84999998100101948
+background_opacity = 0.88999998010694981
 capsule_thickness = 0.69999998807907104
 center = [ "control-center" ]
 end = [
-    "media",
     "tray",
-    "clipboard",
     "notifications",
     "clipboard",
     "network",
@@ -23,7 +21,8 @@ panel_overlap = 0
 radius = 0
 scale = 1.1500000096857548
 shadow = false
-start = [ "launcher", "wallpaper", "workspaces", "workspace-add" ]
+start = [ "launcher", "wallpaper", "taskbar" ]
+thickness = 40
 widget_spacing = 10
 
 [brightness]
@@ -45,23 +44,17 @@ type = "nightlight"
 type = "notification"
 
 [desktop_widgets]
-enabled = true
-schema_version = 2
-widget_order = []
-
-    [desktop_widgets.grid]
-    cell_size = 16
-    major_interval = 4
-    visible = true
-
-    [desktop_widgets.widget]
+enabled = false
 
 [dock]
-auto_hide = true
 background_opacity = 0.76999998278915882
 enabled = true
+icon_size = 49
 launcher_position = "start"
+main_axis_padding = 10
 pinned = [ "kitty", "github-desktop", "steam", "brave-browser" ]
+radius = 10
+reserve_space = false
 show_dots = true
 
 [idle]
@@ -131,8 +124,7 @@ widget_order = [ "lockscreen-login-box@DP-4", "lockscreen-login-box@DP-3" ]
         show_login_button = true
 
 [shell]
-clipboard_enabled = true
-screen_time_enabled = true
+polkit_agent = true
 settings_show_advanced = true
 
     [shell.panel]
@@ -140,7 +132,9 @@ settings_show_advanced = true
     launcher_compact = true
     launcher_session_search = true
     launcher_sort_by_usage = false
+    open_near_click_control_center = true
     open_near_click_wallpaper = true
+    open_near_click_workspace_tray = true
     transparency_mode = "soft"
 
     [shell.screenshot]
@@ -157,17 +151,16 @@ network_poll_seconds = 31
 
 [theme]
 builtin = "Catppuccin"
-community_palette = "Noctalia legacy"
+community_palette = "Breeze"
 mode = "dark"
 source = "community"
-wallpaper_scheme = "m3-content"
 
     [theme.templates]
     builtin_ids = [ "hyprland", "kitty" ]
     community_ids = [ "yazi" ]
 
 [wallpaper]
-directory = "/home/pat/.config/hypr/wallpapers"
+directory = "/home/ecila/.config/hypr/wallpapers/shared"
 fill_mode = "stretch"
 transition_duration = 800
 
@@ -176,33 +169,41 @@ transition_duration = 800
     interval_seconds = 120
 
     [wallpaper.default]
-    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-1350952.png"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
 
     [wallpaper.last]
-    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-1350952.png"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
 
     [wallpaper.monitors.DP-3]
-    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-1350952.png"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
 
     [wallpaper.monitors.DP-4]
-    path = "/home/pat/.config/hypr/wallpapers/shared/thumb-1920-1350952.png"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
 
 [widget.control-center]
 glyph = "notebook"
 
-[widget.media]
-capsule = true
-hide_when_no_media = true
-title_scroll = "on_hover"
+[widget.taskbar]
+focused_only = true
+group_by_workspace = true
+inactive_opacity = 0.85999999999999999
+minimal = true
+occupied_color = "on_surface"
+scale = 1.4000000000000001
+window_title_max_width = 65.0
+workspace_label_placement = "inside"
 
-[widget.workspace-add]
-command = "hyprctl eval 'local ws=hl.get_workspaces() local u={} for _,w in ipairs(ws) do u[w.id]=true end local n=1 while u[n] do n=n+1 end hl.dispatch(hl.dsp.focus{workspace=n})'"
-glyph = "plus"
-tooltip = "New Workspace"
-type = "custom_button"
+[widget.workspace_tray]
+display = "name"
+focused_only = true
+hide_when_empty = true
+new_workspace_command = "hyprctl eval 'local ws=hl.get_workspaces() local u={} for _,w in ipairs(ws) do u[w.id]=true end local n=1 while u[n] do n=n+1 end hl.dispatch(hl.dsp.focus{workspace=n})'"
+occupied_color = "on_surface"
+scale = 1.1000000000000001
+show_new_workspace = true
 
 [widget.workspaces]
-display = "name"
-minimal = true
+focused_only = true
+max_label_chars = 3
 occupied_color = "on_surface"
 scale = 1.1000000000000001
