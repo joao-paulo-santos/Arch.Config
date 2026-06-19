@@ -7,9 +7,9 @@ function M.setup(ctx)
   local l3       = ctx.layer3
   local l4       = ctx.layer4
 
-  local menu     = "/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi -e drun"
-  local hmenu    = "/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi"
-  local tmuxMenu = "/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi -p tmux-freeze,tmux-unfreeze,tmux-cold-storage"
+  local menu     = "/mnt/prometheus/Dev/Repos/velo/build/velo -e drun"
+  local hmenu    = "/mnt/prometheus/Dev/Repos/velo/build/velo"
+  local tmuxMenu = "/mnt/prometheus/Dev/Repos/velo/build/velo -e tmux"
 
   -- Launchers
   hl.bind(l1 .. " + Space", hl.dsp.exec_cmd(menu))

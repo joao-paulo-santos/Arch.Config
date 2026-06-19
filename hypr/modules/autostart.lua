@@ -1,8 +1,8 @@
 -- Autostart: runs on hyprland.start event
 -- Only shared services here — user-specific startup goes in users/<name>.lua init()
 hl.on("hyprland.start", function()
-    -- Core services (disabled — testing noctalia)
-    -- hl.exec_cmd("hypridle")
+    -- Core services
+    hl.exec_cmd("hypridle")
     -- hl.exec_cmd("swaync")
     -- hl.exec_cmd("awww-daemon")
 

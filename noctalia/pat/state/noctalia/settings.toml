@@ -196,6 +196,7 @@ hide_when_no_media = true
 title_scroll = "on_hover"
 
 [widget.workspace-add]
+command = "hyprctl eval 'local ws=hl.get_workspaces() local u={} for _,w in ipairs(ws) do u[w.id]=true end local n=1 while u[n] do n=n+1 end hl.dispatch(hl.dsp.focus{workspace=n})'"
 glyph = "plus"
 tooltip = "New Workspace"
 type = "custom_button"

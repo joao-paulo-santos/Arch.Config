@@ -4,7 +4,7 @@ set -euo pipefail
 WAYBAR_DIR="$HOME/.config/waybar"
 PROFILES_DIR="$WAYBAR_DIR/profiles"
 STATE_FILE="$WAYBAR_DIR/state/active-profile"
-TOFI="/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi"
+TOFI="/mnt/prometheus/Dev/Repos/velo/build/velo"
 
 # Ensure state directory exists
 mkdir -p "$WAYBAR_DIR/state"

@@ -5,8 +5,8 @@ function M.setup(ctx)
   local l1    = ctx.layer1
   local l4    = ctx.layer4
 
-  local menu  = "/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi -t cherry-blossom -e drun"
-  local hmenu = "/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi -t cherry-blossom"
+  local menu  = "/mnt/prometheus/Dev/Repos/velo/build/velo -t cherry-blossom -e drun"
+  local hmenu = "/mnt/prometheus/Dev/Repos/velo/build/velo -t cherry-blossom"
 
   -- Launchers
   hl.bind(l1 .. " + Space", hl.dsp.exec_cmd(menu))

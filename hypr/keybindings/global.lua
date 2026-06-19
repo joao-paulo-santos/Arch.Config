@@ -24,8 +24,8 @@ function M.setup(ctx)
   -- Switch kitty theme
   hl.bind(ctx.layer4 .. " + r", hl.dsp.exec_cmd("~/.config/kitty/scripts/kitty-theme.sh menu"))
 
-  -- hypr-tofi theme switcher
-  hl.bind(ctx.layer3 .. " + t", hl.dsp.exec_cmd("/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi -e theme"))
+  -- velo theme switcher
+  hl.bind(ctx.layer3 .. " + t", hl.dsp.exec_cmd("/mnt/prometheus/Dev/Repos/velo/build/velo -e theme"))
 
   -- Move focus with hjkl (vim) and arrow keys
   hl.bind(l1 .. " + h", hl.dsp.focus({ direction = "left" }))

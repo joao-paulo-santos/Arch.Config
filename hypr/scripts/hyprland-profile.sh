@@ -4,7 +4,7 @@ set -euo pipefail
 STATE_DIR="$HOME/.config/hypr/state"
 STATE_FILE="$STATE_DIR/active-profile"
 PROFILES_DIR="$HOME/.config/hypr/users"
-TOFI="/mnt/prometheus/Dev/Repos/hypr-tofi/build/hypr-tofi"
+TOFI="/mnt/prometheus/Dev/Repos/velo/build/velo"
 
 mkdir -p "$STATE_DIR"
 
