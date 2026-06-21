@@ -59,6 +59,10 @@ noctalia/**/plugins/
 !noctalia/**/noctalia-full-config.toml
 !noctalia/**/settings.toml
 
+# Niri - scrollable tiling Wayland compositor
+!niri/
+!niri/**
+
 
 # Re-ignore sensitive files or directories
 .ssh/

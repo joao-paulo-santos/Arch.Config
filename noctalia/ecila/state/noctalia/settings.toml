@@ -1,19 +1,8 @@
 [bar.default]
 background_opacity = 0.88999998010694981
 capsule_thickness = 0.69999998807907104
-center = [ "control-center" ]
-end = [
-    "tray",
-    "notifications",
-    "clipboard",
-    "network",
-    "bluetooth",
-    "volume",
-    "brightness",
-    "battery",
-    "clock",
-    "session"
-]
+center = []
+end = [ "notifications", "clipboard", "network", "volume", "battery", "clock", "session" ]
 margin_edge = 0
 margin_ends = 0
 padding = 19
@@ -21,7 +10,7 @@ panel_overlap = 0
 radius = 0
 scale = 1.1500000096857548
 shadow = false
-start = [ "launcher", "wallpaper", "taskbar" ]
+start = [ "Velo", "taskbar" ]
 thickness = 40
 widget_spacing = 10
 
@@ -52,7 +41,7 @@ enabled = true
 icon_size = 49
 launcher_position = "start"
 main_axis_padding = 10
-pinned = [ "kitty", "github-desktop", "steam", "brave-browser" ]
+pinned = [ "kitty", "github-desktop", "steam", "brave-browser", "discord" ]
 radius = 10
 reserve_space = false
 show_dots = true
@@ -151,12 +140,11 @@ network_poll_seconds = 31
 
 [theme]
 builtin = "Catppuccin"
-community_palette = "Breeze"
 mode = "dark"
 source = "community"
 
     [theme.templates]
-    builtin_ids = [ "hyprland", "kitty" ]
+    builtin_ids = [ "hyprland", "kitty", "velo" ]
     community_ids = [ "yazi" ]
 
 [wallpaper]
@@ -169,19 +157,31 @@ transition_duration = 800
     interval_seconds = 120
 
     [wallpaper.default]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/344628.jpg"
 
     [wallpaper.last]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/344628.jpg"
 
     [wallpaper.monitors.DP-3]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/344628.jpg"
 
     [wallpaper.monitors.DP-4]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/165090.jpg"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/344628.jpg"
+
+[widget.Velo]
+command = "velo -e drun"
+glyph = "search"
+right_command = "velo"
+type = "custom_button"
 
 [widget.control-center]
 glyph = "notebook"
+
+[widget.network]
+show_label = false
+
+[widget.notifications]
+hide_when_no_unread = true
 
 [widget.taskbar]
 focused_only = true

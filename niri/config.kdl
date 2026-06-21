@@ -1,0 +1,263 @@
+// Niri configuration
+// Adapted from Hyprland config — scrollable tiling instead of dwindle
+// All Mod+letter = workspaces, all Mod+Shift+letter = move to workspace
+
+environment {
+    TERMINAL "kitty"
+    XCURSOR_SIZE "24"
+    LIBVA_DRIVER_NAME "nvidia"
+    __GLX_VENDOR_LIBRARY_NAME "nvidia"
+    QT_QPA_PLATFORM "wayland"
+    XDG_CURRENT_DESKTOP "niri"
+}
+
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+
+    mouse {
+        accel-profile "flat"
+    }
+
+    focus-follows-mouse
+}
+
+// DP-4: 1920x1080@143.86, left monitor
+output "DP-4" {
+    mode "1920x1080@143.86"
+    position x=0 y=0
+    scale 1
+}
+
+// DP-3: 2560x1440@120, right monitor
+output "DP-3" {
+    mode "2560x1440@120"
+    position x=1920 y=0
+    scale 1
+}
+
+layout {
+    gaps 8
+
+    focus-ring {
+        off
+    }
+
+    border {
+        width 2
+        active-color "#1c6585"
+        inactive-color "#000000"
+    }
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    center-focused-column "on-overflow"
+}
+
+prefer-no-csd
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+screenshot-path "~/Media/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// Startup
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "noctalia"
+spawn-at-startup "systemctl" "--user" "start" "graphical-session.target"
+
+binds {
+    // === Essential ===
+    Mod+Return { spawn "kitty"; }
+    Mod+Backspace repeat=false { close-window; }
+    Ctrl+Alt+Delete repeat=false { quit; }
+
+    // === Launchers ===
+    Mod+Space { spawn "velo" "-e" "drun"; }
+    Mod+Shift+Space { spawn "velo" "-e" "tmux"; }
+    Mod+Ctrl+Space { spawn "velo"; }
+    Mod+Ctrl+T { spawn "velo" "-e" "theme"; }
+
+    // === Focus (vim keys + arrows) ===
+    // Mod+drag = move window, Mod+right-drag = resize (built-in)
+    Mod+H     { focus-column-left; }
+    Mod+L     { focus-column-right; }
+    Mod+K     { focus-window-up; }
+    Mod+J     { focus-window-down; }
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-window-up; }
+    Mod+Down  { focus-window-down; }
+
+    // === Move windows (Shift + direction) ===
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+L     { move-column-right; }
+    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+J     { move-window-down; }
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Down  { move-window-down; }
+
+    // === Monitor focus ===
+    Mod+Shift+Ctrl+H     { focus-monitor-left; }
+    Mod+Shift+Ctrl+L     { focus-monitor-right; }
+    Mod+Shift+Ctrl+Left  { focus-monitor-left; }
+    Mod+Shift+Ctrl+Right { focus-monitor-right; }
+
+    // === Workspace navigation ===
+    Mod+Ctrl+L        { focus-workspace-down; }
+    Mod+Ctrl+H        { focus-workspace-up; }
+    Mod+Ctrl+Right    { focus-workspace-down; }
+    Mod+Ctrl+Left     { focus-workspace-up; }
+    Mod+Tab           { toggle-overview; }
+    Mod+Shift+Tab     { focus-workspace-previous; }
+
+    // Move column to adjacent workspace
+    Mod+Shift+Ctrl+K   { move-column-to-workspace-up; }
+    Mod+Shift+Ctrl+J   { move-column-to-workspace-down; }
+
+    // Workspace scroll
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+
+    // === Workspaces 1-0 (number keys) ===
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+0 { move-column-to-workspace 10; }
+
+    // === Letter workspaces (matching Hyprland layout) ===
+    // Top row: Q W E R T Y U I O P → 11-20
+    Mod+Q { focus-workspace 11; }
+    Mod+W { focus-workspace 12; }
+    Mod+E { focus-workspace 13; }
+    Mod+R { focus-workspace 14; }
+    Mod+T { focus-workspace 15; }
+    Mod+Y { focus-workspace 16; }
+    Mod+U { focus-workspace 17; }
+    Mod+I { focus-workspace 18; }
+    Mod+O { focus-workspace 19; }
+    Mod+P { focus-workspace 20; }
+
+    // Home row: A S D F G → 21-25
+    Mod+A { focus-workspace 21; }
+    Mod+S { focus-workspace 22; }
+    Mod+D { focus-workspace 23; }
+    Mod+F { focus-workspace 24; }
+    Mod+G { focus-workspace 25; }
+
+    // Bottom row: Z X C V B N M → 26-32
+    Mod+Z { focus-workspace 26; }
+    Mod+X { focus-workspace 27; }
+    Mod+C { focus-workspace 28; }
+    Mod+V { focus-workspace 29; }
+    Mod+B { focus-workspace 30; }
+    Mod+N { focus-workspace 31; }
+    Mod+M { focus-workspace 32; }
+
+    // Move to letter workspaces (Shift + letter)
+    Mod+Shift+Q { move-column-to-workspace 11; }
+    Mod+Shift+W { move-column-to-workspace 12; }
+    Mod+Shift+E { move-column-to-workspace 13; }
+    Mod+Shift+R { move-column-to-workspace 14; }
+    Mod+Shift+T { move-column-to-workspace 15; }
+    Mod+Shift+Y { move-column-to-workspace 16; }
+    Mod+Shift+U { move-column-to-workspace 17; }
+    Mod+Shift+I { move-column-to-workspace 18; }
+    Mod+Shift+O { move-column-to-workspace 19; }
+    Mod+Shift+P { move-column-to-workspace 20; }
+    Mod+Shift+A { move-column-to-workspace 21; }
+    Mod+Shift+S { move-column-to-workspace 22; }
+    Mod+Shift+D { move-column-to-workspace 23; }
+    Mod+Shift+F { move-column-to-workspace 24; }
+    Mod+Shift+G { move-column-to-workspace 25; }
+    Mod+Shift+Z { move-column-to-workspace 26; }
+    Mod+Shift+X { move-column-to-workspace 27; }
+    Mod+Shift+C { move-column-to-workspace 28; }
+    Mod+Shift+V { move-column-to-workspace 29; }
+    Mod+Shift+B { move-column-to-workspace 30; }
+    Mod+Shift+N { move-column-to-workspace 31; }
+    Mod+Shift+M { move-column-to-workspace 32; }
+
+    // === Column sizing (non-letter keys) ===
+    Mod+Ctrl+R repeat=false { switch-preset-column-width; }
+    Mod+Ctrl+Shift+R repeat=false { reset-window-height; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+Home repeat=false { center-column; }
+
+    // === Floating / fullscreen (Ctrl+Shift combos) ===
+    Mod+Shift+Ctrl+F { toggle-window-floating; }
+    Mod+Shift+Ctrl+M { fullscreen-window; }
+    Mod+Shift+Ctrl+N { fullscreen-window; }
+    Mod+End repeat=false { maximize-column; }
+
+    // Column consume/expel
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    // === Screenshots ===
+    Mod+Print { screenshot-screen; }
+    Mod+Shift+Print { screenshot; }
+
+    // === Volume (wpctl — dedicated keys) ===
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+    // Volume (SUPER + F-keys)
+    Mod+F5  { spawn-sh "amixer -q sset PCM 5%-"; }
+    Mod+F6  { spawn-sh "amixer -q sset PCM 5%+"; }
+    Mod+F7  { spawn-sh "amixer -q sset PCM toggle"; }
+    Mod+F9  allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    Mod+F10 allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; }
+    Mod+F11 allow-when-locked=true { spawn-sh "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"; }
+
+    // Monitor brightness (ddcutil)
+    Mod+Shift+F11 allow-when-locked=true { spawn-sh "~/.config/hypr/scripts/mon-bright-hyprctl.sh increase 10"; }
+    Mod+Shift+F10 allow-when-locked=true { spawn-sh "~/.config/hypr/scripts/mon-bright-hyprctl.sh decrease 10"; }
+
+    // === Misc ===
+    Mod+Shift+Pause repeat=false { power-off-monitors; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}
+
+// Window rules
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
