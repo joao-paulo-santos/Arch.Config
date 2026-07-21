@@ -1,5 +1,6 @@
--- Autostart: runs on hyprland.start event
--- Only shared services here — user-specific startup goes in users/<name>.lua init()
+-- ecila's autostart: services launched on hyprland.start
+-- Combines shared services + ecila's user-specific session.
+
 hl.on("hyprland.start", function()
     -- Core services
     hl.exec_cmd("hypridle")
@@ -13,5 +14,8 @@ hl.on("hyprland.start", function()
 
     -- Wallpaper (disabled — testing noctalia wallpaper switcher)
     -- hl.exec_cmd("awww img ~/.config/hypr/wallpapers/mount.jpg")
-    -- hl.exec_cmd("hypr-bg-manager -d ~/.config/hypr/wallpapers -i global -t timer --interval 600 -s awww -o all")
+    -- hl.exec_cmd("hypr-bgmanager -d ~/.config/hypr/wallpapers -i global -t timer --interval 600 -s awww -o all")
+
+    -- Noctalia (ecila's instance)
+    hl.exec_cmd("NOCTALIA_CONFIG_HOME=~/.config/noctalia/ecila/conf NOCTALIA_STATE_HOME=~/.config/noctalia/ecila/state noctalia")
 end)
