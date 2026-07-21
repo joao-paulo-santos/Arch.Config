@@ -75,3 +75,6 @@ export TERMINAL="kitty"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/home/paquete/.opencode/bin:$PATH

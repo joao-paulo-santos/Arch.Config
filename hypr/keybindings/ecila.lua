@@ -14,7 +14,8 @@ function M.setup(ctx)
   -- Launchers
   hl.bind(l1 .. " + Space", hl.dsp.exec_cmd(menu))
   hl.bind(l4 .. " + Space", hl.dsp.exec_cmd(hmenu))
-
+  hl.bind(l2 .. " + Space", hl.dsp.exec_cmd(tmuxMenu))
+  
   -- Workspace scrolling with layer4
   hl.bind(l4 .. " + l", hl.dsp.focus({ workspace = "m+1" }))
   hl.bind(l4 .. " + h", hl.dsp.focus({ workspace = "m-1" }))
@@ -27,9 +28,6 @@ function M.setup(ctx)
   hl.bind(l3 .. " + k", hl.dsp.window.move({ workspace = "r+1" }))
   hl.bind(l3 .. " + j", hl.dsp.window.move({ workspace = "r-1" }))
   hl.bind(l3 .. " + l", hl.dsp.workspace.move({ monitor = "DP-3" }))
-
-  -- tmux menu
-  hl.bind(l2 .. " + Space", hl.dsp.exec_cmd(tmuxMenu))
 
   -- Named workspaces with layer1 + letters (excludes h/j/k/l — reserved by global focus binds)
   local ws_names = { "Q", "Web", "E", "R", "T", "Y", "U", "I", "O", "P",
