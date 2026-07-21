@@ -37,7 +37,7 @@ enabled = false
 
 [dock]
 background_opacity = 0.76999998278915882
-enabled = true
+enabled = false
 icon_size = 49
 launcher_position = "start"
 main_axis_padding = 10
@@ -185,6 +185,7 @@ hide_when_no_unread = true
 
 [widget.taskbar]
 focused_only = true
+focused_output_only = true
 group_by_workspace = true
 inactive_opacity = 0.85999999999999999
 minimal = true
@@ -196,7 +197,6 @@ workspace_label_placement = "inside"
 [widget.workspace_tray]
 display = "name"
 focused_only = true
-hide_when_empty = true
 new_workspace_command = "hyprctl eval 'local ws=hl.get_workspaces() local u={} for _,w in ipairs(ws) do u[w.id]=true end local n=1 while u[n] do n=n+1 end hl.dispatch(hl.dsp.focus{workspace=n})'"
 occupied_color = "on_surface"
 scale = 1.1000000000000001
