@@ -73,7 +73,7 @@ screenshot-path "~/Media/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // Startup
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "noctalia"
+spawn-sh-at-startup "NOCTALIA_CONFIG_HOME=$HOME/.config/noctalia/$USER/conf NOCTALIA_STATE_HOME=$HOME/.config/noctalia/$USER/state noctalia"
 spawn-at-startup "systemctl" "--user" "start" "graphical-session.target"
 
 binds {
