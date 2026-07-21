@@ -2,7 +2,8 @@
 set -euo pipefail
 
 POLL=10
-PREV_AIO="" PREV_CASE=""
+PREV=""
+CHANNELS=(fan1 fan2 fan3 fan4)
 
 get_tctl() {
     sensors -j 2>/dev/null | python3 -c "
@@ -20,37 +21,22 @@ for k, v in data.items():
 
 map_speed() {
     local temp=$1
-    if   [ "$temp" -ge 85 ]; then echo 70
-    elif [ "$temp" -ge 75 ]; then echo 50
-    elif [ "$temp" -ge 65 ]; then echo 40
-    else echo 30
-    fi
-}
-
-map_speed_aio() {
-    local temp=$1
-    if   [ "$temp" -ge 85 ]; then echo 80
-    elif [ "$temp" -ge 75 ]; then echo 60
-    elif [ "$temp" -ge 65 ]; then echo 45
-    else echo 35
+    if   [ "$temp" -ge 85 ]; then echo 75
+    elif [ "$temp" -ge 75 ]; then echo 55
+    elif [ "$temp" -ge 65 ]; then echo 42
+    else echo 32
     fi
 }
 
 while true; do
     temp=$(get_tctl || echo 60)
+    speed=$(map_speed "$temp")
 
-    aio=$(map_speed_aio "$temp")
-    case_=$(map_speed "$temp")
-
-    if [ "$aio" != "$PREV_AIO" ]; then
-        liquidctl --match "Lian Li" set fan3 speed "$aio" 2>/dev/null || true
-        PREV_AIO=$aio
-    fi
-
-    if [ "$case_" != "$PREV_CASE" ]; then
-        liquidctl --match "Lian Li" set fan2 speed "$case_" 2>/dev/null || true
-        liquidctl --match "Lian Li" set fan4 speed "$case_" 2>/dev/null || true
-        PREV_CASE=$case_
+    if [ "$speed" != "$PREV" ]; then
+        for ch in "${CHANNELS[@]}"; do
+            liquidctl --match "Lian Li" set "$ch" speed "$speed" 2>/dev/null || true
+        done
+        PREV=$speed
     fi
 
     sleep $POLL
