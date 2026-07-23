@@ -8,9 +8,9 @@ local l3       = "SUPER + SHIFT + CTRL"
 local l4       = "SUPER + CTRL"
 
 local terminal = "kitty"
-local menu     = "/mnt/prometheus/Dev/Repos/velo/build/velo -e drun"
-local hmenu    = "/mnt/prometheus/Dev/Repos/velo/build/velo"
-local tmuxMenu = "/mnt/prometheus/Dev/Repos/velo/build/velo -e tmux"
+local menu     = "velo -e drun"
+local hmenu    = "velo"
+local tmuxMenu = "velo -e tmux"
 
 
 -- ===== WINDOW MANAGEMENT =====
