@@ -98,6 +98,10 @@ hl.bind(l3 .. " + F11", hl.dsp.window.fullscreen(), { locked = true })
 hl.bind(l3 .. " + M",   hl.dsp.window.fullscreen({ mode = 1 }), { locked = true })
 hl.bind(l3 .. " + N",   hl.dsp.window.fullscreen(), { locked = true })
 
+-- ===== UTILITIES =====
+-- Toggle auto-clicker (Enter 2×/sec). First press starts, second press stops.
+hl.bind(l3 .. " + A", hl.dsp.exec_cmd("~/.config/hypr/scripts/autoclicker.sh"))
+
 -- ===== AUDIO =====
 -- Volume (wpctl — locked so it works on lockscreen)
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })

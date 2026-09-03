@@ -1,8 +1,10 @@
+config_version = 2
+
 [bar.default]
 background_opacity = 0.88999998010694981
 capsule_thickness = 0.69999998807907104
 center = []
-end = [ "notifications", "clipboard", "network", "volume", "battery", "clock", "session" ]
+end = [ "tray", "notifications", "clipboard", "network", "volume", "battery", "clock", "session" ]
 margin_edge = 0
 margin_ends = 0
 padding = 19
@@ -157,16 +159,16 @@ transition_duration = 800
     interval_seconds = 120
 
     [wallpaper.default]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/344628.jpg"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/717359.jpg"
 
     [wallpaper.last]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/344628.jpg"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/717359.jpg"
 
     [wallpaper.monitors.DP-3]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/344628.jpg"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/717359.jpg"
 
     [wallpaper.monitors.DP-4]
-    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/344628.jpg"
+    path = "/home/ecila/.config/hypr/wallpapers/shared/anime/steins;gate/717359.jpg"
 
 [widget.Velo]
 command = "velo -e drun"

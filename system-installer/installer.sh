@@ -228,6 +228,9 @@ APPS_PACKAGES=(discord dolphin filelight gimp libreoffice-still qbittorrent)
 # UTILITIES packages
 UTILITIES_PACKAGES=(7zip nano socat wget)
 
+# OTHER packages
+OTHER_PACKAGES=(clang glib2-devel greetd niri xwayland-satellite)
+
 # AUR packages
 AUR_PACKAGES=(brave-bin github-desktop-bin yay)
 
