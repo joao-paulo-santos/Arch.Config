@@ -52,6 +52,10 @@ waybar/state/**
 !yazi/yazi.toml
 !yazi/keymap.toml
 
+# Tmux - terminal multiplexer (plugins/ and workspaces state stay local)
+!tmux/
+!tmux/tmux.conf
+
 # Noctalia - bar/wallpaper/notification manager
 !noctalia/
 !noctalia/**/
