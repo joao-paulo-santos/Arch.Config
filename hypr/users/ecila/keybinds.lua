@@ -8,9 +8,9 @@ local l3 = "SUPER + SHIFT + CTRL"
 local l4 = "SUPER + CTRL"
 
 local terminal = "kitty"
-local menu     = "/mnt/prometheus/Dev/Repos/velo/build/velo -e drun"
-local hmenu    = "/mnt/prometheus/Dev/Repos/velo/build/velo"
-local tmuxMenu = "/mnt/prometheus/Dev/Repos/velo/build/velo -e tmux"
+local menu     = "velo -e drun"
+local hmenu    = "velo"
+local tmuxMenu = "velo -e tmux"
 
 -- ===== WINDOW MANAGEMENT =====
 hl.bind(l1 .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -25,7 +25,7 @@ hl.bind(l3 .. " + f", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(l4 .. " + e", hl.dsp.exec_cmd("~/.config/hypr/scripts/hyprland-profile.sh menu"))
 hl.bind(l4 .. " + w", hl.dsp.exec_cmd("~/.config/waybar/scripts/waybar-profile.sh menu"))
 hl.bind(l4 .. " + r", hl.dsp.exec_cmd("~/.config/kitty/scripts/kitty-theme.sh menu"))
-hl.bind(l3 .. " + t", hl.dsp.exec_cmd("/mnt/prometheus/Dev/Repos/velo/build/velo -e theme"))
+hl.bind(l3 .. " + t", hl.dsp.exec_cmd("velo -e theme"))
 
 -- ===== LAUNCHERS =====
 hl.bind(l1 .. " + Space", hl.dsp.exec_cmd(menu))
