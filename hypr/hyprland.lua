@@ -290,9 +290,6 @@ hl.bind(l1 .. " + Space", hl.dsp.exec_cmd(menu))
 hl.bind(l4 .. " + Space", hl.dsp.exec_cmd(hmenu))
 hl.bind(l2 .. " + Space", hl.dsp.exec_cmd(tmuxMenu))
 
--- Super+B opens Brave
-hl.bind(l1 .. " + B", hl.dsp.exec_cmd("brave"))
-
 -- Focus (vim + arrows)
 hl.bind(l1 .. " + h", function()
     hl.dispatch(hl.dsp.focus({ direction = "left" })); warp_if_monitor_changed()
@@ -328,6 +325,17 @@ for i = 1, 10 do
         hl.dispatch(hl.dsp.focus({ workspace = i })); warp_if_monitor_changed()
     end)
     hl.bind(l2 .. " + " .. key, hl.dsp.window.move({ workspace = i }))
+end
+
+-- Workspaces (named)
+local ws_names = { "Q", "Web", "E", "R", "T", "Y", "U", "I", "O", "P",
+                   "A", "S", "D", "F", "G", "Z", "X", "C", "V", "B", "N", "M" }
+local ws_keys  = { "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
+                   "A", "S", "D", "F", "G", "Z", "X", "C", "V", "B", "N", "M" }
+
+for i = 1, #ws_keys do
+    hl.bind(l1 .. " + " .. ws_keys[i], function() hl.dispatch(hl.dsp.focus({ workspace = "name:" .. ws_names[i] })); warp_if_monitor_changed() end)
+    hl.bind(l2 .. " + " .. ws_keys[i], hl.dsp.window.move({ workspace = "name:" .. ws_names[i] }))
 end
 
 -- Workspace navigation
