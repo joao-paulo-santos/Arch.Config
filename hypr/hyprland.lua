@@ -342,12 +342,18 @@ end
 hl.bind(l1 .. " + mouse_down", hl.dsp.focus({ workspace = "m+1" }))
 hl.bind(l1 .. " + mouse_up", hl.dsp.focus({ workspace = "m-1" }))
 
+-- Move workspace to adjacent monitor (DP-6=left, DP-5=right)
+hl.bind(l3 .. " + left", hl.dsp.workspace.move({ monitor = "DP-6" }))
+hl.bind(l3 .. " + right", hl.dsp.workspace.move({ monitor = "DP-5" }))
+
 -- Special workspace
 hl.bind(l3 .. " + c", hl.dsp.window.move({ workspace = "special:magic" }))
 hl.bind(l3 .. " + s", hl.dsp.workspace.toggle_special("magic"))
 
 -- Fullscreen
 hl.bind(l3 .. " + F11", hl.dsp.window.fullscreen(), { locked = true })
+hl.bind(l3 .. " + M", hl.dsp.window.fullscreen({ mode = 1 }), { locked = true })
+hl.bind(l3 .. " + N", hl.dsp.window.fullscreen(), { locked = true })
 
 -- Audio
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
