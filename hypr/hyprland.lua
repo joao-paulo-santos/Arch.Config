@@ -94,15 +94,16 @@ local colors = {
 
 -- Style
 local style = {
-    gaps_in          = 8,
-    gaps_out         = 12,
+    gaps_in          = 1,
+    gaps_out         = 1,
     border_size      = 1,
-    rounding         = 10,
-    active_opacity   = 1.0,
-    inactive_opacity = 0.98,
+    rounding         = 5,
+    active_opacity   = 1,
+    inactive_opacity = 1,
     dim_strength     = 0.1,
     blur_size        = 4,
     blur_passes      = 3,
+
 }
 
 -- Appearance (general + decoration)
@@ -113,7 +114,7 @@ hl.config({
         border_size      = style.border_size,
 
         col = {
-            active_border   = colors.accent,
+            active_border   = colors.inactive,
             inactive_border = colors.inactive,
         },
 
@@ -132,12 +133,12 @@ hl.config({
 
     decoration = {
         rounding         = style.rounding,
-        rounding_power   = 2,
+        rounding_power   = 4,
 
         active_opacity   = style.active_opacity,
         inactive_opacity = style.inactive_opacity,
 
-        dim_inactive     = true,
+        dim_inactive     = false,
         dim_strength     = style.dim_strength,
 
         shadow = {
@@ -154,7 +155,6 @@ hl.config({
             vibrancy = 0.3696,
         },
     },
-
     -- Layout
     dwindle = {
         preserve_split = true,
@@ -279,26 +279,13 @@ hl.bind(l1 .. " + Return", hl.dsp.exec_cmd(terminal))
 
 -- Toggle floating
 hl.bind(l3 .. " + f", hl.dsp.window.float({ action = "toggle" }))
-
--- Theme switchers (waybar, kitty, velo — hyprland profile switching is now `git checkout <user-branch>`)
-hl.bind(l4 .. " + w", hl.dsp.exec_cmd("~/.config/waybar/scripts/waybar-profile.sh menu"))
-hl.bind(l4 .. " + r", hl.dsp.exec_cmd("~/.config/kitty/scripts/kitty-theme.sh menu"))
-hl.bind(l3 .. " + t", hl.dsp.exec_cmd("velo -e theme"))
-
+   
 -- Launchers
 hl.bind(l1 .. " + Space", hl.dsp.exec_cmd(menu))
 hl.bind(l4 .. " + Space", hl.dsp.exec_cmd(hmenu))
 hl.bind(l2 .. " + Space", hl.dsp.exec_cmd(tmuxMenu))
 
--- Focus (vim + arrows)
-hl.bind(l1 .. " + h", function()
-    hl.dispatch(hl.dsp.focus({ direction = "left" })); warp_if_monitor_changed()
-end)
-hl.bind(l1 .. " + k", hl.dsp.focus({ direction = "up" }))
-hl.bind(l1 .. " + j", hl.dsp.focus({ direction = "down" }))
-hl.bind(l1 .. " + l", function()
-    hl.dispatch(hl.dsp.focus({ direction = "right" })); warp_if_monitor_changed()
-end)
+-- Focus (vim + arrows) 
 hl.bind(l1 .. " + left", function()
     hl.dispatch(hl.dsp.focus({ direction = "left" })); warp_if_monitor_changed()
 end)
@@ -309,10 +296,6 @@ hl.bind(l1 .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(l1 .. " + down", hl.dsp.focus({ direction = "down" }))
 
 -- Move windows
-hl.bind(l2 .. " + h", hl.dsp.window.move({ direction = "left" }))
-hl.bind(l2 .. " + k", hl.dsp.window.move({ direction = "up" }))
-hl.bind(l2 .. " + j", hl.dsp.window.move({ direction = "down" }))
-hl.bind(l2 .. " + l", hl.dsp.window.move({ direction = "right" }))
 hl.bind(l2 .. " + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind(l2 .. " + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(l2 .. " + up", hl.dsp.window.move({ direction = "up" }))
@@ -354,11 +337,6 @@ hl.bind("ALT + SHIFT + Tab", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(l3 .. " + c", hl.dsp.window.move({ workspace = "special:magic" }))
 hl.bind(l3 .. " + s", hl.dsp.workspace.toggle_special("magic"))
 
--- Fullscreen
-hl.bind(l3 .. " + F11", hl.dsp.window.fullscreen(), { locked = true })
-hl.bind(l3 .. " + M", hl.dsp.window.fullscreen({ mode = 1 }), { locked = true })
-hl.bind(l3 .. " + N", hl.dsp.window.fullscreen(), { locked = true })
-
 -- Audio
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
     { locked = true, repeating = true })
@@ -366,10 +344,6 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO
     { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
-
-hl.bind(l1 .. " + F9", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
-hl.bind(l1 .. " + F10", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true })
-hl.bind(l1 .. " + F11", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true })
 
 -- Screenshots
 hl.bind(l1 .. " + Print", hl.dsp.exec_cmd("noctalia msg screenshot-fullscreen"))

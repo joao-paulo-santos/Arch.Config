@@ -18,7 +18,7 @@ radius_bottom_left = 24
 radius_bottom_right = 24
 reserve_space = false
 shadow = true
-start = [ "workspace_tray", "launcher", "workspaces" ]
+start = [ "velo", "taskbar" ]
 thickness = 35
 widget_spacing = 24
 
@@ -362,7 +362,16 @@ scale = 1.4000000000000001
 window_title_max_width = 65.0
 workspace_label_placement = "inside"
 
+[widget.velo]
+glyph = "search"
+type = "custom_button"
+
+    [widget.velo.actions]
+    left = "exec velo -e drun"
+    right = "exec velo"
+
 [widget.workspaces]
+enabled = false
 focused_output_only = true
 max_label_chars = 3
 occupied_color = "on_surface"
