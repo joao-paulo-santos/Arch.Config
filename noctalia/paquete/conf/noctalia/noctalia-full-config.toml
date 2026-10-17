@@ -1,9 +1,7 @@
 [audio]
 enable_overdrive = false
 enable_sounds = false
-notification_sound = ""
 sound_volume = 0.5
-volume_change_sound = ""
 
 [backdrop]
 blur_intensity = 0.5
@@ -118,7 +116,6 @@ magnification_scale = 1.4500000476837158
 main_axis_padding = 16
 margin_edge = 8
 margin_ends = 0
-monitors = []
 pinned = [ "kitty", "github-desktop", "steam", "brave-browser" ]
 position = "bottom"
 radius = 16
@@ -293,14 +290,12 @@ scale = 1.0
 enabled = []
 
     [[plugins.source]]
-    auto_update = false
     enabled = true
     kind = "git"
     location = "https://github.com/noctalia-dev/official-plugins"
     name = "official"
 
     [[plugins.source]]
-    auto_update = false
     enabled = true
     kind = "git"
     location = "https://github.com/noctalia-dev/community-plugins"
@@ -319,7 +314,6 @@ date_format = "%A, %x"
 disable_mipmaps = false
 font_family = "sans-serif"
 launch_apps_as_systemd_services = false
-middle_click_opens_widget_settings = true
 niri_overview_type_to_launch_enabled = false
 offline_mode = false
 password_style = "default"
@@ -331,7 +325,6 @@ shared_gl_context = true
 show_location = true
 telemetry_enabled = false
 time_format = "{:%H:%M}"
-ui_scale = 1.0
 
     [shell.animation]
     enabled = true
@@ -342,15 +335,8 @@ ui_scale = 1.0
 
     [shell.panel]
     borders = true
-    clipboard_placement = "centered"
     control_center_placement = "attached"
     floating_offset = 8
-    launcher_categories = false
-    launcher_compact = true
-    launcher_placement = "centered"
-    launcher_session_search = true
-    launcher_show_icons = true
-    launcher_sort_by_usage = false
     open_near_click_clipboard = false
     open_near_click_control_center = false
     open_near_click_launcher = false
@@ -432,8 +418,6 @@ cpu_temp_critical_threshold = 85.0
 cpu_temp_sensor_path = ""
 cpu_usage_activity_threshold = 50.0
 cpu_usage_critical_threshold = 90.0
-disk_pct_activity_threshold = 80.0
-disk_pct_critical_threshold = 95.0
 disk_poll_seconds = 34.0
 enabled = true
 gpu_poll_seconds = 30.0
@@ -517,7 +501,6 @@ device = "input"
 type = "volume"
 
 [widget.keyboard_layout]
-cycle_command = ""
 hide_when_single_layout = false
 type = "keyboard_layout"
 
@@ -560,8 +543,6 @@ stat = "cpu_temp"
 type = "sysmon"
 
 [widget.workspaces]
-display = "name"
-minimal = true
 occupied_color = "on_surface"
 scale = 1.1000000000000001
 type = "workspaces"
