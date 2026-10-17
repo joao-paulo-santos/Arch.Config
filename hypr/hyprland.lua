@@ -346,6 +346,10 @@ hl.bind(l1 .. " + mouse_up", hl.dsp.focus({ workspace = "m-1" }))
 hl.bind(l3 .. " + left", hl.dsp.workspace.move({ monitor = "DP-6" }))
 hl.bind(l3 .. " + right", hl.dsp.workspace.move({ monitor = "DP-5" }))
 
+-- Alt+Tab cycle
+hl.bind("ALT + Tab", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("ALT + SHIFT + Tab", hl.dsp.focus({ workspace = "e-1" }))
+
 -- Special workspace
 hl.bind(l3 .. " + c", hl.dsp.window.move({ workspace = "special:magic" }))
 hl.bind(l3 .. " + s", hl.dsp.workspace.toggle_special("magic"))
